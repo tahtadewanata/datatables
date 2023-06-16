@@ -57,12 +57,12 @@
                         name: 'nama_opd'
                     },
                     {
-                        data: 'tb_usiasekolah.jk_lk_smps',
-                        name: 'tb_usiasekolah.jk_lk_sds'
+                        data: 'jk_lk_sds',
+                        name: 'jk_lk_sds'
                     },
                     {
-                        data: 'tb_usiasekolah.jk_pr_sds',
-                        name: 'tb_usiasekolah.jk_pr_sds'
+                        data: 'jk_pr_sds',
+                        name: 'jk_pr_sds'
                     },
                     {
                         data: "sum",
