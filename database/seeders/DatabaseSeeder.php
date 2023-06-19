@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\AdminSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
@@ -28,5 +29,7 @@ class DatabaseSeeder extends Seeder
                 'tahun' => $faker->year('+3 years')
             ]);
         }
+
+        $this->call(AdminSeeder::class);
     }
 }

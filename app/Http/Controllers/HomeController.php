@@ -3,25 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use App\Models\Opd;
-
 
 class HomeController extends Controller
 {
-    public function index()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        // $all_opd = Opd::all();
-        $all_opd = Opd::orderBy('id', 'desc')->paginate(12);
-        return view('visitors.page.home', ['opd' => $all_opd], ['title' => 'TES JUDUl']);
+        $this->middleware('auth');
     }
 
-    public function show(string $id)
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
     {
-        //get post by ID
-        $detailgender = Opd::findOrFail($id);
-
-        //render view with post
-        return view('visitors.page.detailgender', compact('detailgender'), ['title' => 'SIDANDA - Detail Data Gender']);
+        return view('admin.index');
     }
 }

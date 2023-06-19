@@ -25,10 +25,11 @@ return new class extends Migration
             $table->integer('jk_lk_smps');
             $table->integer('jk_pr_smps');
             $table->year('tahun');
-            $table->string('created_by');
-            $table->date('created_at');
-            $table->string('update_by');
-            $table->date('update_at');
+            $table->string('created_by')->nullable();
+            // $table->date('created_at');
+            $table->string('update_by')->nullable();
+            // $table->date('update_at');
+            $table->timestamps();
         });
     }
 
