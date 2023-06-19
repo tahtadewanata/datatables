@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         // $all_opd = Opd::all();
         $all_opd = Opd::orderBy('id', 'desc')->paginate(12);
-        return view('visitors.page.home', ['opd' => $all_opd], ['title' => 'SIDANDA - SISTEM INFORMASI DATA GENDER DAN ANAK KABUPATEN NGANJUK']);
+        return view('visitors.page.home', ['opd' => $all_opd], ['title' => 'TES JUDUl']);
     }
 
     public function show(string $id)
