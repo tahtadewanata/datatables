@@ -65,3 +65,4 @@ Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
+Route::get('totalusiasekolah/list', [LandingController::class, 'getTotalusiasekolah'])->name('totalusiasekolah.list');

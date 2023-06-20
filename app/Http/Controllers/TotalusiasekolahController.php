@@ -34,5 +34,16 @@ class TotalusiasekolahController extends Controller
             })
             ->addIndexColumn()
             ->make(true);
+        // Dengan Query Builder
+
+        // $data = DB::table('opd')
+        //     ->join('tb_usiasekolah', 'opd.id', '=', 'tb_usiasekolah.id_uker')
+        //     ->select('opd.*', 'tb_usiasekolah.*', DB::raw('SUM(tb_usiasekolah.jk_lk_sds + tb_usiasekolah.->jk_pr_smps) as sum'))
+        //     ->groupBy('opd.id', 'tb_usiasekolah.id')
+        //     ->get();
+
+        // return Datatables::of($data)
+        //     ->addIndexColumn()
+        //     ->make(true);
     }
 }
