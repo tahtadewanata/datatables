@@ -25,6 +25,7 @@
                                         <th>table1</th>
                                         <th>table2</th>
                                         <th>sum</th>
+                                        <th width="15%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,6 +71,12 @@
                     {
                         data: 'sum',
                         name: 'sum'
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        orderable: false,
+                        searchable: false
                     },
                 ]
             });

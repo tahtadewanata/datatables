@@ -20,6 +20,7 @@ class DatatableController extends Controller
         $data = tb_usiasekolah::all();
         if ($request->ajax()) {
             return DataTables::of($data)
+                ->addIndexColumn()
                 ->addColumn('jklksds', function ($item) {
                     $item1 = $item->jk_lk_sds;
                     return $item1;
@@ -32,7 +33,10 @@ class DatatableController extends Controller
                     $sum = $item->jk_lk_sds + $item->jk_pr_smps;
                     return $sum;
                 })
-                ->addIndexColumn()
+                ->addColumn('actions', function ($ndk) {
+                    return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+                })
+                ->rawColumns(['actions'])
                 ->make(true);
         }
 

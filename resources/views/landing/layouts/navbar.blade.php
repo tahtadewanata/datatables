@@ -65,7 +65,11 @@
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
                 <li class="nav-item @@contact">
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    @auth
+                        <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                    @else
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    @endauth
                 </li>
             </ul>
         </div>

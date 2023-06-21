@@ -69,7 +69,7 @@
         </div>
     </div>
 </section>
-<section class="section pt-0 position-relative pull-top">
+{{-- <section class="section pt-0 position-relative pull-top">
     <div class="container">
         <div class="rounded shadow p-5 bg-white">
             <div class="row">
@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!--==================================
     =            Feature Grid            =
     ===================================-->
