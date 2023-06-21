@@ -244,7 +244,8 @@
                         <div>
                             <div class="product-item pb-3">
                                 <div class="product-image">
-                                    <img alt="image" src="../../admin/img/products/product-4-50.png" class="img-fluid">
+                                    <img alt="image" src="../../admin/img/products/product-4-50.png"
+                                        class="img-fluid">
                                 </div>
                                 <div class="product-details">
                                     <div class="product-name">iBook Pro 2018</div>
@@ -265,7 +266,8 @@
                         <div>
                             <div class="product-item">
                                 <div class="product-image">
-                                    <img alt="image" src="../../admin/img/products/product-3-50.png" class="img-fluid">
+                                    <img alt="image" src="../../admin/img/products/product-3-50.png"
+                                        class="img-fluid">
                                 </div>
                                 <div class="product-details">
                                     <div class="product-name">oPhone S9 Limited</div>
@@ -286,7 +288,8 @@
                         <div>
                             <div class="product-item">
                                 <div class="product-image">
-                                    <img alt="image" src="../../admin/img/products/product-1-50.png" class="img-fluid">
+                                    <img alt="image" src="../../admin/img/products/product-1-50.png"
+                                        class="img-fluid">
                                 </div>
                                 <div class="product-details">
                                     <div class="product-name">Headphone Blitz</div>
@@ -518,4 +521,17 @@
             </div>
         </div>
     </div>
+
+    <!-- General JS Scripts -->
+    <script src="../../admin/modules/jquery.min.js"></script>
+
+    <!-- JS Libraies -->
+    <script src="../../admin/modules/jquery.sparkline.min.js"></script>
+    <script src="../../admin/modules/chart.min.js"></script>
+    <script src="../../admin/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
+    <script src="../../admin/modules/summernote/summernote-bs4.js"></script>
+    <script src="../../admin/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="../../admin/js/page/index.js"></script>
 @endsection

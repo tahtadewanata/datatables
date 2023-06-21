@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DatatableController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\ItemController;
@@ -62,7 +64,19 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
-Route::get('totalusiasekolah/list', [LandingController::class, 'getTotalusiasekolah'])->name('totalusiasekolah.list');
+
+Route::group(['middleware' => ['auth']], function () {
+
+    //Dashboard
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+    //Datatable
+    Route::resource('/datatable', DatatableController::class);
+
+    //User
+    Route::resource('/pengguna', UserController::class);
+
+    //Other
+    Route::get('totalusiasekolah/list', [LandingController::class, 'getTotalusiasekolah'])->name('totalusiasekolah.list');
+});
