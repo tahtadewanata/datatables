@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('opd', function (Blueprint $table) {
+        Schema::create('data_siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_opd');
-            $table->string('logo_opd');
-            $table->string('desk_opd');
-            $table->string('created_by');
-            $table->date('created_at');
-            $table->string('update_by');
-            $table->date('update_at');
+            $table->unsignedBigInteger('kecamatan_id');
+            $table->string('nama_siswa');
+            $table->string('jk');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opd');
+        Schema::dropIfExists('data_siswa');
     }
 };

@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opd;
-use App\Models\tb_usiasekolah;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -17,23 +16,34 @@ class DatatableController extends Controller
     public function index(Request $request)
     {
         //
-        $data = tb_usiasekolah::all();
+        $data = Kecamatan::when($request->has('tahun'), function ($kec) use ($request) {
+            $kec->where('tahun', $request->tahun);
+        });
+
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('jklksds', function ($item) {
-                    $item1 = $item->jk_lk_sds;
-                    return $item1;
+                ->addColumn('kecamatan', function ($item) {
+                    return $item->nama_kecamatan;
                 })
-                ->addColumn('jkprsds', function ($item) {
-                    $item2 = $item->jk_pr_smps;
-                    return $item2;
+                ->addColumn('jk_l', function ($item) {
+                    return $item->countjk('L');
+                })
+                ->addColumn('jk_p', function ($item) {
+                    return $item->countjk('P');
                 })
                 ->addColumn('sum', function ($item) {
-                    $sum = $item->jk_lk_sds + $item->jk_pr_smps;
+                    $sum =  $item->countjk('L') +  $item->countjk('P');
+                    $item->sum = $sum;
                     return $sum;
                 })
-                ->addColumn('actions', function ($ndk) {
+                ->addColumn('pr_l', function ($item) {
+                    return number_format(($item->countjk('L') / $item->sum) * 100, 2);
+                })
+                ->addColumn('pr_p', function ($item) {
+                    return number_format(($item->countjk('P') / $item->sum) * 100, 2);
+                })
+                ->addColumn('actions', function () {
                     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
                 })
                 ->rawColumns(['actions'])

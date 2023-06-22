@@ -17,15 +17,32 @@
                         <h4>Basic DataTables</h4>
                     </div>
                     <div class="card-body">
+                        <div class="form-group">
+                            <label>Tahun</label>
+                            <select class="form-control" name="tahun" id="selectTahun">
+                                <option value="">Pilih Tahun</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped" id="table-data">
                                 <thead>
                                     <tr>
-                                        <th width="10%">No.</th>
-                                        <th>table1</th>
-                                        <th>table2</th>
-                                        <th>sum</th>
-                                        <th width="15%">Actions</th>
+                                        <th rowspan="2">No</th>
+                                        <th rowspan="2">Kecamatan</th>
+                                        <th colspan="2">Jenis Kelamin SD Swasta</th>
+                                        <th rowspan="2">Jumlah</th>
+                                        <th colspan="2">Persentase</th>
+                                        <th rowspan="2" width="15%">Actions</th>
+                                    </tr>
+                                    <tr>
+                                        <th>L</th>
+                                        <th>P</th>
+                                        <th>L</th>
+                                        <th>P</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +67,7 @@
 
     <script>
         $(function() {
-            var table = $('#table-data').DataTable({
+            var myTable = $('#table-data').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{{ route('datatable.index') }}',
@@ -61,16 +78,28 @@
                         orderable: false
                     },
                     {
-                        data: 'jklksds',
-                        name: 'jklksds'
+                        data: 'kecamatan',
+                        name: 'kecamatan'
                     },
                     {
-                        data: 'jkprsds',
-                        name: 'jkprsds'
+                        data: 'jk_l',
+                        name: 'jk_l'
+                    },
+                    {
+                        data: 'jk_p',
+                        name: 'jk_p'
                     },
                     {
                         data: 'sum',
                         name: 'sum'
+                    },
+                    {
+                        data: 'pr_l',
+                        name: 'pr_l'
+                    },
+                    {
+                        data: 'pr_p',
+                        name: 'pr_p'
                     },
                     {
                         data: 'actions',
@@ -79,6 +108,12 @@
                         searchable: false
                     },
                 ]
+            });
+            $('#selectTahun').on('change', function() {
+                var tahun = $(this).val();
+                console.log(tahun);
+                var urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
+                myTable.ajax.url(urls).load();
             });
         });
     </script>

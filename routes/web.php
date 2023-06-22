@@ -76,7 +76,4 @@ Route::group(['middleware' => ['auth']], function () {
 
     //User
     Route::resource('/pengguna', UserController::class);
-
-    //Other
-    Route::get('totalusiasekolah/list', [LandingController::class, 'getTotalusiasekolah'])->name('totalusiasekolah.list');
 });

@@ -13,7 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::rename('tb_usiasekolahs', 'tb_usiasekolah');
+        Schema::create('kecamatan', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_kecamatan');
+            $table->string('tahun');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::rename('tb_usiasekolah', 'tb_usiasekolahs');
+        Schema::dropIfExists('kecamatan');
     }
 };

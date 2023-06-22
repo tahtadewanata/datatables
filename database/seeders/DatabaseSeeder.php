@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\DataSiswa;
+use App\Models\Kecamatan;
 use Database\Seeders\AdminSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,18 +17,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1, 75) as $index) {
-            DB::table('tb_usiasekolah')->insert([
-                'id_uker' => $faker->numberBetween(0, 37),
-                'jk_lk_sds' => $faker->numberBetween(500, 3853),
-                'jk_pr_sds' => $faker->numberBetween(500, 3853),
-                'jk_lk_sdn' => $faker->numberBetween(500, 3853),
-                'jk_pr_sdn' => $faker->numberBetween(500, 3853),
-                'jk_lk_smpn' => $faker->numberBetween(500, 3853),
-                'jk_pr_smpn' => $faker->numberBetween(500, 3853),
-                'jk_lk_smps' => $faker->numberBetween(500, 3853),
-                'jk_pr_smps' => $faker->numberBetween(500, 3853),
-                'tahun' => $faker->year('+3 years')
+
+        for ($i = 0; $i < 15; $i++) {
+            Kecamatan::create([
+                'nama_kecamatan' => $faker->city,
+                'tahun' => $faker->numberBetween(2020, 2023),
+            ]);
+        }
+
+        for ($i = 0; $i < 5000; $i++) {
+            DataSiswa::create([
+                'kecamatan_id' => rand(1, 15),
+                'nama_siswa' => $faker->name,
+                'jk' => $faker->randomElement(['P', 'L']),
             ]);
         }
 
