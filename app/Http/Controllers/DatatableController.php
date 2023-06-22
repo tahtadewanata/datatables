@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\MydataDataTable;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;

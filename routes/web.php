@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DatatableController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\UserController;
@@ -73,6 +74,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Datatable
     Route::resource('/datatable', DatatableController::class);
+
+    //ChartJS
+    Route::resource('/chartjs', ChartController::class);
+    Route::get('/getChart', [ChartController::class, 'getChart'])->name('getChart');
 
     //User
     Route::resource('/pengguna', UserController::class);

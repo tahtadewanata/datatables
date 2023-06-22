@@ -11,6 +11,7 @@
             <li><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
             <li class="menu-header">Menu</li>
             <li><a class="nav-link" href="{{ route('datatable.index') }}"><i class="far fa-square"></i> <span>Datatable</span></a></li>
+            <li><a class="nav-link" href="{{ route('chartjs.index') }}"><i class="far fa-square"></i> <span>ChartJs</span></a></li>
             <li class="menu-header">Akses</li>
             <li><a class="nav-link" href="{{ route('pengguna.index') }}"><i class="far fa-square"></i> <span>Pengguna</span></a></li>
     </aside>

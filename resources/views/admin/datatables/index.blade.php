@@ -53,6 +53,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>CharJs</h4>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="../../admin/modules/jquery.min.js"></script>
@@ -111,7 +124,6 @@
             });
             $('#selectTahun').on('change', function() {
                 var tahun = $(this).val();
-                console.log(tahun);
                 var urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
                 myTable.ajax.url(urls).load();
             });
