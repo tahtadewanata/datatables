@@ -30,22 +30,20 @@
     <script src="../../admin/modules/chart.min.js"></script>
 
     <script>
-        var ctx = document.getElementById("myChart2").getContext('2d');
-
-        function fetchData() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '{{ route('getChart') }}', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var chartData = JSON.parse(xhr.responseText);
-
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ route('getChart') }}",
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    var ctx = document.getElementById("myChart2").getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: chartData.labels,
+                            labels: response.labels,
                             datasets: [{
                                 label: 'Laki-laki',
-                                data: chartData.data.laki,
+                                data: response.data.laki,
                                 borderWidth: 2,
                                 backgroundColor: '#6777ef',
                                 borderColor: '#6777ef',
@@ -53,7 +51,7 @@
                                 pointRadius: 4
                             }, {
                                 label: 'Perempuan',
-                                data: chartData.data.perempuan,
+                                data: response.data.perempuan,
                                 borderWidth: 2,
                                 backgroundColor: '#ff6b88',
                                 borderColor: '#ff6b88',
@@ -61,14 +59,22 @@
                                 pointRadius: 4
                             }]
                         },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: false,
+                                        stepSize: 10
+                                    }
+                                }]
+                            }
+                        }
                     });
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
                 }
-            };
-            xhr.send();
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchData();
+            });
         });
     </script>
 @endsection
