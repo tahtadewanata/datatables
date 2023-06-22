@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Datatable
     Route::resource('/datatable', DatatableController::class);
+    Route::get('/getExport', [DatatableController::class, 'getExport'])->name('getExport');
 
     //ChartJS
     Route::resource('/chartjs', ChartController::class);

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\MydataDataTable;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class DatatableController extends Controller
 {
@@ -52,6 +53,39 @@ class DatatableController extends Controller
         }
 
         return view('admin.datatables.index');
+    }
+
+    public function getExport(Request $request)
+    {
+        $data = Kecamatan::all();
+
+        $filename = 'data.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=' . $filename,
+        ];
+
+        $callback = function () use ($data) {
+            $file = fopen('php://output', 'w');
+
+            fputcsv($file, ['Kecamatan', 'Jumlah Laki-laki', 'Jumlah Perempuan', 'Total', 'Persentase Laki-laki', 'Persentase Perempuan']);
+
+            foreach ($data as $item) {
+                fputcsv($file, [
+                    $item->nama_kecamatan,
+                    $item->countjk('L'),
+                    $item->countjk('P'),
+                    $item->countjk('L') + $item->countjk('P'),
+                    number_format(($item->countjk('L') / ($item->countjk('L') + $item->countjk('P'))) * 100, 2),
+                    number_format(($item->countjk('L') / ($item->countjk('L') + $item->countjk('P'))) * 100, 2),
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return Response::stream($callback, 200, $headers);
     }
 
     /**
