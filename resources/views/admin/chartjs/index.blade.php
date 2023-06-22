@@ -32,7 +32,6 @@
     <script>
         var ctx = document.getElementById("myChart2").getContext('2d');
 
-        // Membuat fungsi untuk mengambil data chart melalui Ajax
         function fetchData() {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '{{ route('getChart') }}', true);
@@ -68,7 +67,6 @@
             xhr.send();
         }
 
-        // Memanggil fungsi fetchData saat halaman dimuat
         document.addEventListener('DOMContentLoaded', function() {
             fetchData();
         });
