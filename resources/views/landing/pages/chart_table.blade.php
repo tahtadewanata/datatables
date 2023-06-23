@@ -114,10 +114,15 @@
             });
             $('#exampleFormControlSelect1').on('change', function() {
                 // Ketika nilai elemen select dengan ID exampleFormControlSelect1 berubah
-                let tahun = $(this).val(); // Mengambil nilai yang dipilih
-                console.log(tahun);
-                let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun; // Membentuk URL dengan menambahkan parameter tahun
-                myTable.ajax.url(urls).load(); // Memperbarui URL sumber data DataTable dan memuat ulang data
+
+                // Mengambil nilai yang dipilih
+                let tahun = $(this).val();
+
+                // Membentuk URL dengan menambahkan parameter tahun
+                let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
+
+                // Memperbarui URL sumber data DataTable dan memuat ulang data
+                myTable.ajax.url(urls).load();
             });
         });
 
@@ -133,7 +138,9 @@
 
             function reloadChart() {
                 // Fungsi untuk memperbarui chart
-                let selectedYear = $('#exampleFormControlSelect1').val(); // Mengambil nilai yang dipilih dari elemen select
+
+                // Mengambil nilai yang dipilih dari elemen select
+                let selectedYear = $('#exampleFormControlSelect1').val();
 
                 $.ajax({
                     url: "{{ route('getChartTable') }}",
@@ -148,6 +155,7 @@
                             myChart.destroy(); // Destory chart sebelumnya (jika ada)
                         }
 
+                        // Ini adalah package dari chart.js, untuk dokumentasi lihat https://www.chartjs.org/docs/latest/
                         let ctx = document.getElementById("myChart2").getContext('2d');
                         myChart = new Chart(ctx, {
                             type: 'bar',
