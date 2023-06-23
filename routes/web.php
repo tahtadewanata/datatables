@@ -66,6 +66,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
+Route::get('/chart-table', [LandingController::class, 'chartTable'])->name('chartTable');
+Route::get('/get-chart-table', [LandingController::class, 'getChartLanding'])->name('getChartTable');
 
 Route::group(['middleware' => ['auth']], function () {
 

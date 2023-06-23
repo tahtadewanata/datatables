@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Models\Opd;
 use Yajra\DataTables\DataTables;
@@ -17,6 +18,74 @@ class LandingController extends Controller
     {
         //
         return view('landing.index');
+    }
+
+    public function chartTable(Request $request)
+    {
+        //
+        $data = Kecamatan::when($request->has('tahun'), function ($kec) use ($request) {
+            $kec->where('tahun', $request->tahun);
+        });
+
+        if ($request->ajax()) {
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('kecamatan', function ($item) {
+                    return $item->nama_kecamatan;
+                })
+                ->addColumn('jk_l', function ($item) {
+                    return $item->countjk('L');
+                })
+                ->addColumn('jk_p', function ($item) {
+                    return $item->countjk('P');
+                })
+                ->addColumn('sum', function ($item) {
+                    $sum =  $item->countjk('L') +  $item->countjk('P');
+                    $item->sum = $sum;
+                    return $sum;
+                })
+                ->addColumn('pr_l', function ($item) {
+                    return number_format(($item->countjk('L') / $item->sum) * 100, 2);
+                })
+                ->addColumn('pr_p', function ($item) {
+                    return number_format(($item->countjk('P') / $item->sum) * 100, 2);
+                })
+                ->addColumn('actions', function () {
+                    return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+                })
+                ->rawColumns(['actions'])
+                ->make(true);
+        }
+
+        return view('landing.pages.chart_table');
+    }
+
+    public function getChartLanding(Request $request)
+    {
+        $data = Kecamatan::with('siswa')
+            ->when($request->has('tahun'), function ($kec) use ($request) {
+                $kec->where('tahun', $request->tahun);
+            })->get();
+
+        if (!$request->filled('tahun')) {
+            $data = Kecamatan::with('siswa')->get();
+        }
+
+        $labels = $data->pluck('nama_kecamatan');
+        $lakiData = $data->pluck('siswa')->map(function ($siswa) {
+            return $siswa->where('jk', 'L')->count();
+        });
+        $perempuanData = $data->pluck('siswa')->map(function ($siswa) {
+            return $siswa->where('jk', 'P')->count();
+        });
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'laki' => $lakiData,
+                'perempuan' => $perempuanData
+            ]
+        ]);
     }
 
     /**
@@ -83,36 +152,5 @@ class LandingController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getTotalusiasekolah()
-    {
-        $data = Opd::all();
-        return Datatables::of($data)
-            ->addColumn('jk_lk_sds', function ($item) {
-                $item1 = $item->tb_usiasekolah?->jk_lk_sds;
-                return $item1;
-            })
-            ->addColumn('jk_pr_sds', function ($item) {
-                $item2 = $item->tb_usiasekolah?->jk_pr_smps;
-                return $item2;
-            })
-            ->addColumn('sum', function ($item) {
-                $sum = $item->tb_usiasekolah?->jk_lk_sds + $item->tb_usiasekolah?->jk_pr_smps;
-                return $sum;
-            })
-            ->addIndexColumn()
-            ->make(true);
-        // Dengan Query Builder
-
-        // $data = DB::table('opd')
-        //     ->join('tb_usiasekolah', 'opd.id', '=', 'tb_usiasekolah.id_uker')
-        //     ->select('opd.*', 'tb_usiasekolah.*', DB::raw('SUM(tb_usiasekolah.jk_lk_sds + tb_usiasekolah.->jk_pr_smps) as sum'))
-        //     ->groupBy('opd.id', 'tb_usiasekolah.id')
-        //     ->get();
-
-        // return Datatables::of($data)
-        //     ->addIndexColumn()
-        //     ->make(true);
     }
 }

@@ -38,8 +38,8 @@
     <link rel="stylesheet" href="../../landing/plugins/fancybox/jquery.fancybox.min.css">
     <link rel="stylesheet" href="../../landing/plugins/aos/aos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <!-- CUSTOM CSS -->
     <link href="../../landing/css/style.css" rel="stylesheet">

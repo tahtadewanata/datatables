@@ -65,6 +65,9 @@
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
                 <li class="nav-item @@contact">
+                    <a class="nav-link" href="{{ route('chartTable') }}">Table & Chart</a>
+                </li>
+                <li class="nav-item @@contact">
                     @auth
                         <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                     @else

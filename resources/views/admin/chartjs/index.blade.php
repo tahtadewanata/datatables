@@ -36,8 +36,8 @@
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
-                    var ctx = document.getElementById("myChart2").getContext('2d');
-                    var myChart = new Chart(ctx, {
+                    let ctx = document.getElementById("myChart2").getContext('2d');
+                    let myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: response.labels,

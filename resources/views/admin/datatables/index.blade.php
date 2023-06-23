@@ -132,8 +132,8 @@
                 ]
             });
             $('#selectTahun').on('change', function() {
-                var tahun = $(this).val();
-                var urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
+                let tahun = $(this).val();
+                let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
                 myTable.ajax.url(urls).load();
             });
         });
