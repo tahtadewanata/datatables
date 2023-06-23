@@ -118,7 +118,7 @@
                 let tahun = $(this).val();
 
                 // Membentuk URL dengan menambahkan parameter tahun
-                let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
+                let urls = '{!! route('chartTable') !!}' + '?tahun=' + tahun;
 
                 // Memperbarui URL sumber data DataTable dan memuat ulang data
                 myTable.ajax.url(urls).load();
