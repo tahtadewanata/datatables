@@ -19,21 +19,26 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-10">
-                                <div class="form-group">
-                                    <label>Tahun</label>
-                                    <select class="form-control" name="tahun" id="selectTahun">
-                                        <option value="">Pilih Tahun</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                    </select>
-                                </div>
+                                <form action="{{ route('getExport', ['tahun' => ':tahun']) }}" method="POST"
+                                    target="_blank">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Tahun</label>
+                                        <select class="form-control" name="tahun" id="selectTahun">
+                                            <option value="">Pilih Tahun</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
                             </div>
                             <div class="col-2">
                                 <label>Download CSV</label>
                                 <br>
-                                <a href="{{ route('getExport') }}" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> Download</a>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-download"></i>
+                                    Download</button>
+                                </form>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -132,9 +137,39 @@
                 ]
             });
             $('#selectTahun').on('change', function() {
+                // Ketika nilai elemen select dengan ID selectTahun berubah
+
+                // Mengambil nilai yang dipilih
                 let tahun = $(this).val();
+
+                // Membentuk URL dengan menambahkan parameter tahun
                 let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
+
+                // Memperbarui URL sumber data DataTable dan memuat ulang data
                 myTable.ajax.url(urls).load();
+            });
+        });
+
+        $(document).ready(function() {
+            // Ketika dokumen selesai dimuat
+            $('#downloadButton').click(function(event) {
+                // Ketika tombol "Download" diklik
+                event.preventDefault(); // Mencegah pengiriman form secara langsung
+
+                // Mengambil nilai yang dipilih dari elemen select dengan ID selectTahun
+                var selectedValue = $('#selectTahun').val();
+
+                // Mengambil URL aksi dari elemen form dengan ID exportForm
+                var actionURL = $('#exportForm').attr('action');
+
+                // Mengganti substring :tahun dalam URL aksi dengan nilai yang dipilih
+                actionURL = actionURL.replace(':tahun', selectedValue);
+
+                // Memperbarui atribut action pada elemen form dengan URL yang telah diperbarui
+                $('#exportForm').attr('action', actionURL);
+
+                // Mengirimkan form
+                $('#exportForm').submit();
             });
         });
     </script>

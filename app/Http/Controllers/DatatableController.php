@@ -61,7 +61,12 @@ class DatatableController extends Controller
 
     public function getExport(Request $request)
     {
-        $data = Kecamatan::all();
+
+        if ($request->tahun != null) {
+            $data = Kecamatan::with('siswa')->where('tahun', $request->tahun)->get();
+        } else {
+            $data = Kecamatan::with('siswa')->get();
+        }
 
         $filename = 'data.csv';
 
