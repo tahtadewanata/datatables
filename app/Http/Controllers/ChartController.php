@@ -19,12 +19,20 @@ class ChartController extends Controller
         return view('admin.chartjs.index');
     }
 
-    public function getChart()
+    public function getChart(Request $request)
     {
-        $data = Kecamatan::with('siswa')->get();
+        $data = Kecamatan::with('siswa')
+            ->when($request->has('tahun'), function ($kec) use ($request) {
+                $kec->where('tahun', $request->tahun);
+            })->get();
+
+        if (!$request->filled('tahun')) {
+            $data = Kecamatan::with('siswa')->get();
+        }
 
         $labels = $data->pluck('nama_kecamatan');
         $lakiData = $data->pluck('siswa')->map(function ($siswa) {
+
             return $siswa->where('jk', 'L')->count();
         });
         $perempuanData = $data->pluck('siswa')->map(function ($siswa) {
