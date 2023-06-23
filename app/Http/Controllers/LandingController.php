@@ -27,6 +27,10 @@ class LandingController extends Controller
             $kec->where('tahun', $request->tahun);
         });
 
+        if (!$request->filled('tahun')) {
+            $data = Kecamatan::with('siswa');
+        }
+
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
