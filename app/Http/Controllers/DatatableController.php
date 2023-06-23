@@ -39,7 +39,7 @@ class DatatableController extends Controller
                     return $item->countjk('P');
                 })
                 ->addColumn('sum', function ($item) {
-                    $sum =  $item->countjk('L') +  $item->countjk('P');
+                    $sum = $item->countjk('L') + $item->countjk('P');
                     $item->sum = $sum;
                     return $sum;
                 })
@@ -53,6 +53,12 @@ class DatatableController extends Controller
                     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
                 })
                 ->rawColumns(['actions'])
+                ->filter(function ($query) use ($request) {
+                    if ($request->filled('search.value')) {
+                        $searchValue = $request->input('search.value');
+                        $query->where('nama_kecamatan', 'like', '%' . $searchValue . '%');
+                    }
+                })
                 ->make(true);
         }
 

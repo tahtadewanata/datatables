@@ -90,6 +90,15 @@ class LandingController extends Controller
 
                 // Mengembalikan kolom 'actions'
                 ->rawColumns(['actions'])
+                ->filter(function ($query) use ($request) {
+                    /**
+                     * Jika parameter 'search.value' diberikan pada request, maka filter data kecamatan berdasarkan nama kecamatan yang mengandung string tersebut.
+                     */
+                    if ($request->filled('search.value')) {
+                        $searchValue = $request->input('search.value');
+                        $query->where('nama_kecamatan', 'like', '%' . $searchValue . '%');
+                    }
+                })
                 ->make(true);
         }
 

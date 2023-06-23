@@ -92,7 +92,7 @@
                     },
                     {
                         data: 'kecamatan',
-                        name: 'kecamatan'
+                        name: 'kecamatan',
                     },
                     {
                         data: 'jk_l',
