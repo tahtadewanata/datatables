@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-10">
-                                <form action="{{ route('getExport', ['tahun' => ':tahun']) }}" method="POST"
+                                <form action="{{ route('getExport') }}" method="POST"
                                     target="_blank">
                                     @csrf
                                     <div class="form-group">
@@ -137,39 +137,9 @@
                 ]
             });
             $('#selectTahun').on('change', function() {
-                // Ketika nilai elemen select dengan ID selectTahun berubah
-
-                // Mengambil nilai yang dipilih
                 let tahun = $(this).val();
-
-                // Membentuk URL dengan menambahkan parameter tahun
                 let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
-
-                // Memperbarui URL sumber data DataTable dan memuat ulang data
                 myTable.ajax.url(urls).load();
-            });
-        });
-
-        $(document).ready(function() {
-            // Ketika dokumen selesai dimuat
-            $('#downloadButton').click(function(event) {
-                // Ketika tombol "Download" diklik
-                event.preventDefault(); // Mencegah pengiriman form secara langsung
-
-                // Mengambil nilai yang dipilih dari elemen select dengan ID selectTahun
-                var selectedValue = $('#selectTahun').val();
-
-                // Mengambil URL aksi dari elemen form dengan ID exportForm
-                var actionURL = $('#exportForm').attr('action');
-
-                // Mengganti substring :tahun dalam URL aksi dengan nilai yang dipilih
-                actionURL = actionURL.replace(':tahun', selectedValue);
-
-                // Memperbarui atribut action pada elemen form dengan URL yang telah diperbarui
-                $('#exportForm').attr('action', actionURL);
-
-                // Mengirimkan form
-                $('#exportForm').submit();
             });
         });
     </script>
