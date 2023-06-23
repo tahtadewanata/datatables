@@ -19,8 +19,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-10">
-                                <form action="{{ route('getExport') }}" method="POST"
-                                    target="_blank">
+                                <form action="{{ route('getExport') }}" method="POST" target="_blank">
                                     @csrf
                                     <div class="form-group">
                                         <label>Tahun</label>
@@ -137,9 +136,10 @@
                 ]
             });
             $('#selectTahun').on('change', function() {
-                let tahun = $(this).val();
-                let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun;
-                myTable.ajax.url(urls).load();
+                // Ketika nilai elemen select dengan ID selectTahun berubah
+                let tahun = $(this).val(); // Mengambil nilai yang dipilih
+                let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun; // Membentuk URL dengan menambahkan parameter tahun
+                myTable.ajax.url(urls).load(); // Memperbarui URL sumber data DataTable dan memuat ulang data
             });
         });
     </script>

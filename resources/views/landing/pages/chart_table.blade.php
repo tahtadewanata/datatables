@@ -113,9 +113,11 @@
                 ]
             });
             $('#exampleFormControlSelect1').on('change', function() {
-                let tahun = $(this).val();
-                let urls = '{!! route('chartTable') !!}' + '?tahun=' + tahun;
-                myTable.ajax.url(urls).load();
+                // Ketika nilai elemen select dengan ID exampleFormControlSelect1 berubah
+                let tahun = $(this).val(); // Mengambil nilai yang dipilih
+                console.log(tahun);
+                let urls = '{!! route('datatable.index') !!}' + '?tahun=' + tahun; // Membentuk URL dengan menambahkan parameter tahun
+                myTable.ajax.url(urls).load(); // Memperbarui URL sumber data DataTable dan memuat ulang data
             });
         });
 
@@ -123,12 +125,15 @@
         let myChart;
 
         $(document).ready(function() {
+            // Ketika dokumen selesai dimuat
             $('#exampleFormControlSelect1').change(function() {
-                reloadChart();
+                // Ketika nilai elemen select dengan ID exampleFormControlSelect1 berubah
+                reloadChart(); // Memanggil fungsi reloadChart untuk memperbarui chart
             });
 
             function reloadChart() {
-                let selectedYear = $('#exampleFormControlSelect1').val();
+                // Fungsi untuk memperbarui chart
+                let selectedYear = $('#exampleFormControlSelect1').val(); // Mengambil nilai yang dipilih dari elemen select
 
                 $.ajax({
                     url: "{{ route('getChartTable') }}",
@@ -138,8 +143,9 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        // Jika permintaan AJAX berhasil
                         if (myChart) {
-                            myChart.destroy();
+                            myChart.destroy(); // Destory chart sebelumnya (jika ada)
                         }
 
                         let ctx = document.getElementById("myChart2").getContext('2d');
@@ -178,11 +184,12 @@
                         });
                     },
                     error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
+                        console.error(xhr
+                        .responseText); // Menampilkan pesan error pada konsol jika terjadi kesalahan
                     }
                 });
             }
-            reloadChart();
+            reloadChart(); // Memanggil fungsi reloadChart saat dokumen selesai dimuat
         });
     </script>
 @endsection

@@ -63,37 +63,52 @@ class DatatableController extends Controller
     {
 
         if ($request->tahun != null) {
+
+            // Jika parameter 'tahun' diberikan pada request, maka hanya data kecamatan dengan tahun tersebut yang diambil.
             $data = Kecamatan::with('siswa')->where('tahun', $request->tahun)->get();
         } else {
+
+            // Jika parameter 'tahun' tidak diberikan pada request, maka ambil semua data kecamatan.
             $data = Kecamatan::with('siswa')->get();
         }
 
+        // File yang di unduh akan bernama data.csv
         $filename = 'data.csv';
 
+        // Header dengan tipe csv, ini adalah untuk mengunduh data
         $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename=' . $filename,
         ];
 
+        // Callback untuk mengembalikan data
         $callback = function () use ($data) {
+
+            // Membuat file
             $file = fopen('php://output', 'w');
 
+            // Menggunakan fitur fputcsv untuk membuat CSV pada PHP.
             fputcsv($file, ['Kecamatan', 'Jumlah Laki-laki', 'Jumlah Perempuan', 'Total', 'Persentase Laki-laki', 'Persentase Perempuan']);
 
+            // Menggunakan foreach untuk mengambil data kecamatan dan jumlah siswa pada setiap kecamatan
             foreach ($data as $item) {
                 fputcsv($file, [
                     $item->nama_kecamatan,
                     $item->countjk('L'),
                     $item->countjk('P'),
                     $item->countjk('L') + $item->countjk('P'),
+
+                    // Menghitung persentase
                     number_format(($item->countjk('L') / ($item->countjk('L') + $item->countjk('P'))) * 100, 2),
-                    number_format(($item->countjk('L') / ($item->countjk('L') + $item->countjk('P'))) * 100, 2),
+                    number_format(($item->countjk('P') / ($item->countjk('L') + $item->countjk('P'))) * 100, 2),
                 ]);
             }
 
+            // Menutup file
             fclose($file);
         };
 
+        // Mengembalikan file CSV dalam bentuk HTTP response.
         return Response::stream($callback, 200, $headers);
     }
 
