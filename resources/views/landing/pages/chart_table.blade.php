@@ -54,7 +54,6 @@
                         </table>
                     </div>
                 </div>
-
                 <div class="col-12">
                     <div class="section-title mb-0">
                         <canvas id="myChart2"></canvas>
