@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DatatableController;
+use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +84,9 @@ Route::group(['middleware' => ['auth']], function () {
     //ChartJS
     Route::resource('/chartjs', ChartController::class);
     Route::get('/getChart', [ChartController::class, 'getChart'])->name('getChart');
+
+    //Crud Kecamatan
+    Route::resource('/kecamatan', KecamatanController::class);
 
     //User
     Route::resource('/pengguna', UserController::class);

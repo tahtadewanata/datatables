@@ -12,6 +12,7 @@
             <li class="menu-header">Menu</li>
             <li><a class="nav-link" href="{{ route('datatable.index') }}"><i class="fas fa-table"></i> <span>Datatable</span></a></li>
             <li><a class="nav-link" href="{{ route('chartjs.index') }}"><i class="fas fa-desktop"></i> <span>ChartJs</span></a></li>
+            <li><a class="nav-link" href="{{ route('kecamatan.index') }}"><i class="fas fa-desktop"></i> <span>Kecamatan</span></a></li>
             <li class="menu-header">Akses</li>
             <li><a class="nav-link" href="{{ route('pengguna.index') }}"><i class="fas fa-user"></i> <span>Pengguna</span></a></li>
     </aside>

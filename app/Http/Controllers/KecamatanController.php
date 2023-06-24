@@ -15,6 +15,9 @@ class KecamatanController extends Controller
     public function index()
     {
         //
+        $datas = Kecamatan::latest()->get();
+
+        return view('admin.kecamatan.index', compact('datas'));
     }
 
     /**
@@ -25,6 +28,7 @@ class KecamatanController extends Controller
     public function create()
     {
         //
+        return view('admin.kecamatan.create');
     }
 
     /**
@@ -36,6 +40,11 @@ class KecamatanController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+
+        Kecamatan::create($input);
+
+        return redirect()->route('kecamatan.index');
     }
 
     /**
@@ -58,6 +67,7 @@ class KecamatanController extends Controller
     public function edit(Kecamatan $kecamatan)
     {
         //
+        return view('admin.kecamatan.edit', compact('kecamatan'));
     }
 
     /**
@@ -70,6 +80,11 @@ class KecamatanController extends Controller
     public function update(Request $request, Kecamatan $kecamatan)
     {
         //
+        $input = $request->all();
+
+        $kecamatan->update($input);
+
+        return redirect()->route('kecamatan.index');
     }
 
     /**
@@ -81,5 +96,8 @@ class KecamatanController extends Controller
     public function destroy(Kecamatan $kecamatan)
     {
         //
+        $kecamatan->delete();
+
+        return redirect()->back();
     }
 }
