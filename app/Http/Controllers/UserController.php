@@ -28,6 +28,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('admin.users.create');
     }
 
     /**
@@ -39,6 +40,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        // User::create($input);
+        User::create([
+            'name'     => $request->nama,
+            'email'     => $request->email,
+            'password'   => bcrypt($request->password)
+        ]);
+        return redirect()->route('pengguna.index');
     }
 
     /**

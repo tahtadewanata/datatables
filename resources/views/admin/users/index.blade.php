@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Basic DataTables</h4>
+                        <h4>Basic DataTables</h4> <a href="{{ route('pengguna.create') }}" class="btn btn-primary">Tambah User</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
