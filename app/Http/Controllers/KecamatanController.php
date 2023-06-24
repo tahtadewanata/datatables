@@ -40,6 +40,11 @@ class KecamatanController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'nama_kecamatan' => 'required',
+            'tahun' => 'required',
+        ]);
+
         $input = $request->all();
 
         Kecamatan::create($input);
@@ -80,6 +85,11 @@ class KecamatanController extends Controller
     public function update(Request $request, Kecamatan $kecamatan)
     {
         //
+        $this->validate($request, [
+            'nama_kecamatan' => 'required',
+            'tahun' => 'required',
+        ]);
+
         $input = $request->all();
 
         $kecamatan->update($input);
