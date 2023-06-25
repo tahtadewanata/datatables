@@ -18,7 +18,6 @@
                     </div>
                     <div class="card-body">
                         <form action="{{ route('pengguna.store') }}" method="POST">
-                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Name</label>

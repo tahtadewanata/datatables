@@ -2204,6 +2204,7 @@ pre {
 .section {
   position: relative;
   z-index: 1; }
+  .custom-section { position: static !important; }
   .section > *:first-child {
     margin-top: -7px; }
   .section .section-header {

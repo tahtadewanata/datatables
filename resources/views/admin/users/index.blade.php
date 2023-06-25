@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Basic DataTables</h4> <a href="{{ route('pengguna.create') }}" class="btn btn-primary">Tambah User</a>
+                        <h4>Basic DataTables</h4> <a href="javascript:void(0)" class="btn btn-primary" id="btn_create_user">Tambah User</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -27,7 +27,7 @@
                                         <th width="15%">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-users">
                                     @php
                                         $i = 1;
                                     @endphp
@@ -47,6 +47,7 @@
             </div>
         </div>
     </div>
+    
 
     <script src="../../admin/modules/jquery.min.js"></script>
     <!-- JS Libraies -->
@@ -54,7 +55,10 @@
     <script src="../../admin/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../admin/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
     <script src="../../admin/modules/jquery-ui/jquery-ui.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Page Specific JS File -->
     <script src="../../admin/js/page/modules-datatables.js"></script>
+
+    @include('admin.users.modal-create')
 @endsection

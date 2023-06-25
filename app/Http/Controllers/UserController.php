@@ -47,12 +47,18 @@ class UserController extends Controller
         ]);
 
         // User::create($input);
-        User::create([
+        $users = User::create([
             'name'     => $request->nama,
             'email'     => $request->email,
             'password'   => bcrypt($request->password)
         ]);
-        return redirect()->route('pengguna.index');
+        dd($users);
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Disimpan!',
+            'data'    => $users  
+        ]);
+        // return redirect()->route('pengguna.index');
     }
 
     /**

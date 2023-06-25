@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ecommerce Dashboard &mdash; Stisla</title>
 
     <!-- General CSS Files -->
@@ -47,7 +48,7 @@
             @include('admin.layouts.sidebar')
             <!-- Main Content -->
             <div class="main-content">
-                <section class="section">
+                <section class="section custom-section">
                     @yield('content')
                 </section>
             </div>
@@ -71,6 +72,9 @@
     <script src="../../admin/modules/nicescroll/jquery.nicescroll.min.js"></script>
     <script src="../../admin/modules/moment.min.js"></script>
     <script src="../../admin/js/stisla.js"></script>
+    <script src="../../admin/js/page/bootstrap-modal.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <!-- Template JS File -->
     <script src="../../admin/js/scripts.js"></script>
