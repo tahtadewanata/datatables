@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" id="nama">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
                 </div>
-                
+
 
                 <div class="form-group">
                     <label class="control-label">Email</label>
@@ -39,7 +39,7 @@
 
 <script>
     //button create post event
-    $('body').on('click', '#btn_create_user', function () {
+    $('body').on('click', '#btn_create_user', function() {
 
         //open modal
         $('#modal-create').modal('show');
@@ -50,11 +50,11 @@
         e.preventDefault();
 
         //define variable
-        let name   = $('#nama').val();
+        let name = $('#nama').val();
         let email = $('#email').val();
         let pass = $('#password').val();
-        let token   = $("meta[name='csrf-token']").attr("content");
-        
+        let token = $("meta[name='csrf-token']").attr("content");
+
         //ajax
         $.ajax({
 
@@ -67,7 +67,7 @@
                 "password": password,
                 "_token": token
             },
-            success:function(response){
+            success: function(response) {
 
                 //show success message
                 Swal.fire({
@@ -90,22 +90,22 @@
                         </td>
                     </tr>
                 `;
-                
+
                 //append to table
                 $('#table-users').prepend(user);
-                
+
                 //clear form
                 $('#title').val('');
                 $('#content').val('');
 
                 //close modal
                 $('#modal-create').modal('hide');
-                
+
 
             },
-            error:function(error){
-                
-                if(error.responseJSON.title[0]) {
+            error: function(error) {
+
+                if (error.responseJSON.title[0]) {
 
                     //show alert
                     $('#alert-title').removeClass('d-none');
@@ -113,9 +113,9 @@
 
                     //add message to alert
                     $('#alert-title').html(error.responseJSON.title[0]);
-                } 
+                }
 
-                if(error.responseJSON.content[0]) {
+                if (error.responseJSON.content[0]) {
 
                     //show alert
                     $('#alert-content').removeClass('d-none');
@@ -123,12 +123,11 @@
 
                     //add message to alert
                     $('#alert-content').html(error.responseJSON.content[0]);
-                } 
+                }
 
             }
 
         });
 
     });
-
 </script>
