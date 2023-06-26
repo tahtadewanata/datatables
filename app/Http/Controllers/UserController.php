@@ -52,11 +52,10 @@ class UserController extends Controller
             'email'     => $request->email,
             'password'   => bcrypt($request->password)
         ]);
-        dd($users);
         return response()->json([
             'success' => true,
             'message' => 'Data Berhasil Disimpan!',
-            'data'    => $users  
+            'data'    => $users
         ]);
         // return redirect()->route('pengguna.index');
     }

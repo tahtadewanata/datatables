@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal add user -->
 <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -11,20 +11,19 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name" class="control-label">Nama</label>
-                    <input type="text" class="form-control" id="nama">
-                    <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-title"></div>
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="isi dengan nama anda">
+                    <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name"></div>
                 </div>
-
 
                 <div class="form-group">
                     <label class="control-label">Email</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="isi dengan email anda">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-email"></div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Password</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="password">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-password"></div>
                 </div>
 
@@ -54,19 +53,21 @@
         let email = $('#email').val();
         let pass = $('#password').val();
         let token = $("meta[name='csrf-token']").attr("content");
-
+        
         //ajax
+        let form_data = new FormData();
+        form_data.append('nama', name);
+        form_data.append('email', email);
+        form_data.append('password', pass);
+        
         $.ajax({
-
             url: `/pengguna`,
             type: "POST",
             cache: false,
-            data: {
-                "nama": name,
-                "email": email,
-                "password": password,
-                "_token": token
-            },
+            contentType: false,
+            processData: false,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: form_data,
             success: function(response) {
 
                 //show success message
@@ -81,13 +82,10 @@
                 //data post
                 let user = `
                     <tr id="index_${response.data.id}">
+                        <td>${response.data.id}</td>
                         <td>${response.data.name}</td>
                         <td>${response.data.email}</td>
-                        <td>${response.data.password}</td>
-                        <td class="text-center">
-                            <a href="javascript:void(0)" id="btn-edit-post" data-id="${response.data.id}" class="btn btn-primary btn-sm">EDIT</a>
-                            <a href="javascript:void(0)" id="btn-delete-post" data-id="${response.data.id}" class="btn btn-danger btn-sm">DELETE</a>
-                        </td>
+                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
                     </tr>
                 `;
 
@@ -95,8 +93,9 @@
                 $('#table-users').prepend(user);
 
                 //clear form
-                $('#title').val('');
-                $('#content').val('');
+                $('#nama').val('');
+                $('#email').val('');
+                $('#password').val('');
 
                 //close modal
                 $('#modal-create').modal('hide');
@@ -105,24 +104,11 @@
             },
             error: function(error) {
 
-                if (error.responseJSON.title[0]) {
-
-                    //show alert
-                    $('#alert-title').removeClass('d-none');
-                    $('#alert-title').addClass('d-block');
-
-                    //add message to alert
-                    $('#alert-title').html(error.responseJSON.title[0]);
+                if (!email) {
+                    toastr.error(email, 'Wajib isi Email', {timeOut: 5000});
                 }
-
-                if (error.responseJSON.content[0]) {
-
-                    //show alert
-                    $('#alert-content').removeClass('d-none');
-                    $('#alert-content').addClass('d-block');
-
-                    //add message to alert
-                    $('#alert-content').html(error.responseJSON.content[0]);
+                if (!name) {
+                    toastr.error(name, 'Wajib isi nama', {timeOut: 5000});
                 }
 
             }

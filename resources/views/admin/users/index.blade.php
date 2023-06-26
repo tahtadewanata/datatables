@@ -56,6 +56,7 @@
     <script src="../../admin/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
     <script src="../../admin/modules/jquery-ui/jquery-ui.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script src="../../admin/js/page/modules-datatables.js"></script>
