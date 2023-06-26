@@ -11,13 +11,15 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name" class="control-label">Nama</label>
-                    <input type="text" class="form-control" name="nama" id="nama" placeholder="isi dengan nama anda">
+                    <input type="text" class="form-control" name="nama" id="nama"
+                        placeholder="isi dengan nama anda">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name"></div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="isi dengan email anda">
+                    <input type="email" class="form-control" name="email" id="email"
+                        placeholder="isi dengan email anda">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-email"></div>
                 </div>
 
@@ -53,20 +55,31 @@
         let email = $('#email').val();
         let pass = $('#password').val();
         let token = $("meta[name='csrf-token']").attr("content");
-        
+
+        //untuk pengecekan jika email valid
+        if (!isValidEmail(email)) {
+            toastr.error(email, 'Email tidak valid', {
+                timeOut: 5000,
+                iconClass: 'toast-error'
+            });
+            return;
+        }
+
         //ajax
         let form_data = new FormData();
         form_data.append('nama', name);
         form_data.append('email', email);
         form_data.append('password', pass);
-        
+
         $.ajax({
             url: `/pengguna`,
             type: "POST",
             cache: false,
             contentType: false,
             processData: false,
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: form_data,
             success: function(response) {
 
@@ -100,15 +113,18 @@
                 //close modal
                 $('#modal-create').modal('hide');
 
-
             },
             error: function(error) {
 
                 if (!email) {
-                    toastr.error(email, 'Wajib isi Email', {timeOut: 5000});
+                    toastr.error(email, 'Wajib isi Email', {
+                        timeOut: 5000
+                    });
                 }
                 if (!name) {
-                    toastr.error(name, 'Wajib isi nama', {timeOut: 5000});
+                    toastr.error(name, 'Wajib isi nama', {
+                        timeOut: 5000
+                    });
                 }
 
             }
@@ -116,4 +132,10 @@
         });
 
     });
+
+    //fungsi utk memvalidasi email
+    function isValidEmail(email) {
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 </script>

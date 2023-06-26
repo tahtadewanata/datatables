@@ -74,7 +74,7 @@
     <script src="../../admin/modules/moment.min.js"></script>
     <script src="../../admin/js/stisla.js"></script>
     <script src="../../admin/js/page/bootstrap-modal.js"></script>
-    
+
 
     <!-- Template JS File -->
     <script src="../../admin/js/scripts.js"></script>
