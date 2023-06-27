@@ -10,21 +10,21 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="name" class="control-label">Nama</label>
+                    <label for="nama" class="control-label">Nama</label>
                     <input type="text" class="form-control" name="nama" id="nama"
                         placeholder="isi dengan nama anda">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-name"></div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label">Email</label>
+                    <label for="email" class="control-label">Email</label>
                     <input type="email" class="form-control" name="email" id="email"
                         placeholder="isi dengan email anda">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-email"></div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label">Password</label>
+                    <label for="password" class="control-label">Password</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="password">
                     <div class="alert alert-danger mt-2 d-none" role="alert" id="alert-password"></div>
                 </div>
@@ -65,12 +65,12 @@
             return;
         }
 
-        //ajax
         let form_data = new FormData();
         form_data.append('nama', name);
         form_data.append('email', email);
         form_data.append('password', pass);
-
+               
+        //ajax
         $.ajax({
             url: `/pengguna`,
             type: "POST",

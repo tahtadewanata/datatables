@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
@@ -66,9 +68,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $users)
     {
-        //
+        //return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Detail Data Post',
+            'data'    => $users
+        ]);
     }
 
     /**
@@ -82,16 +89,33 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $users)
     {
-        //
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return     response()->json($validator->errors(), 422);
+        }
+
+        //update user
+        $users->update([
+            'name'     => $request->nama,
+            'email'     => $request->email,
+            'password'   => bcrypt($request->password)
+        ]);
+
+        //return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Data User Berhasil Di update!',
+            'data'    => $users
+        ]);
     }
 
     /**

@@ -36,7 +36,10 @@
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" id="btn-edit-user" data-id="{{ $user->id }}" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="#" class="btn btn-secondary">Hapus</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -62,4 +65,6 @@
     <script src="../../admin/js/page/modules-datatables.js"></script>
 
     @include('admin.users.modal-create')
+    @include('admin.users.modal-edit')
+
 @endsection
