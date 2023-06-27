@@ -68,9 +68,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $users)
+    public function show($id)
     {
-        //return response
+        $users = User::find($id);
         return response()->json([
             'success' => true,
             'message' => 'Detail Data Post',
