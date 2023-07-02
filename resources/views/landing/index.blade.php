@@ -25,11 +25,10 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 order-2 order-md-1 text-center text-md-left">
-                <h1 class="text-white font-weight-bold mb-4">Showcase your app with Small Apps</h1>
-                <p class="text-white mb-5">Besides its beautiful design. Laapp is an incredibly rich core framework for
-                    you to
-                    showcase your App.</p>
-                <a href="FAQ.html" class="btn btn-main-md">Download Now</a>
+                <h1 class="text-white font-weight-bold mb-4">SISTEM INFORMASI DATA GENDER DAN ANAK</h1>
+                <p class="text-white mb-5">data terpilah berdasarkan jenis kelamin menjadi inti dalam 
+                    menghasilkan Statistik Gender yang didalamnya mengandung informasi isu gender.</p>
+                {{-- <a href="#" class="btn btn-main-md">Download</a> --}}
             </div>
             <div class="col-md-6 text-center order-1 order-md-2">
                 <img class="img-fluid" src="../../landing/images/mobile.png" alt="screenshot">
@@ -69,363 +68,349 @@
         </div>
     </div>
 </section>
-{{-- <section class="section pt-0 position-relative pull-top">
-    <div class="container">
-        <div class="rounded shadow p-5 bg-white">
+
+
+
+<!--================================
+=            BERITA Title            =
+=================================-->
+
+<section class="section page-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 m-auto">
+				<!-- Page Title -->
+				<h2>BERITA SIDANDA</h2>
+			</div>
+		</div>
+	</div>
+</section>
+<!--=================================
+    =            BERITA SIDANDA            =
+    ==================================-->
+    <section class="post-grid section pt-0">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <meta name="csrf-token" content="{{ csrf_token() }}">
-                    <select id="year-filter">
-                        <option value="">All</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                    </select>
-
-                    <table id="data-tablec" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th rowspan="2">No</th>
-                                <th rowspan="2">Kecamatan</th>
-                                <th colspan="2">Jenis Kelamin SD Swasta</th>
-                                <th rowspan="2">Jumlah</th>
-                            </tr>
-                            <tr>
-                                <th>L</th>
-                                <th>P</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-01.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Innovation distinguishes between a leader and a follower.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-02.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Design is not just what it looks like and feels like. Design is how it works.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-03.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Design is not just what it looks like and feels like. Design is how it works.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-01.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Innovation distinguishes between a leader and a follower.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-02.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Design is not just what it looks like and feels like. Design is how it works.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-03.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Design is not just what it looks like and feels like. Design is how it works.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-12">
+                    <!-- Call to action Community -->
+    <div class="cta-community shadow">
+        <div class="row align-items-center">
+            <div class="col-lg-9 text-center text-lg-left">
+                <div class="content">
+                    <!-- Title -->
+                    <h2>Ready To Join Our Community?</h2>
+                    <!-- Description -->
+                    <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. </p>
+                </div>
+            </div>
+            <div class="col-lg-3 text-center text-lg-right mt-4 mt-lg-0">
+                <div class="action-button">
+                    <!-- Call Button -->
+                    <a href="contact.html" class="btn btn-main-sm">Join now</a>
                 </div>
             </div>
         </div>
     </div>
-</section> --}}
-<!--==================================
-    =            Feature Grid            =
-    ===================================-->
-<section class="feature section pt-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 ml-auto justify-content-center">
-                <!-- Feature Mockup -->
-                <div class="image-content" data-aos="fade-right">
-                    <img class="img-fluid" src="../../landing/images/feature/feature-new-01.jpg" alt="iphone">
                 </div>
-            </div>
-            <div class="col-lg-6 mr-auto align-self-center">
-                <div class="feature-content">
-                    <!-- Feature Title -->
-                    <h2>Increase your productivity with <a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small
-                            Apps</a></h2>
-                    <!-- Feature Description -->
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut
-                        aliquip ex ea commodo consequat.</p>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-01.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Innovation distinguishes between a leader and a follower.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
                 </div>
-                <!-- Testimonial Quote -->
-                <div class="testimonial">
-                    <p>
-                        "InVision is a window into everything that's being designed at Twitter. It gets all of our best
-                        work in one
-                        place."
-                    </p>
-                    <ul class="list-inline meta">
-                        <li class="list-inline-item">
-                            <img src="../../landing/images/testimonial/feature-testimonial-thumb.jpg" alt="">
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-02.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Design is not just what it looks like and feels like. Design is how it works.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <!-- Post -->
+    <article class="post-sm">
+        <!-- Post Image -->
+        <div class="post-thumb">
+            <a href="blog-single.html"><img class="w-100" src="images/blog/post-03.jpg" alt="Post-Image"></a>		
+        </div>
+        <!-- Post Title -->
+        <div class="post-title">
+            <h3><a href="blog-single.html">Design is not just what it looks like and feels like. Design is how it works.</a></h3>
+        </div>
+        <!-- Post Meta -->
+        <div class="post-meta">
+            <ul class="list-inline post-tag">
+                <li class="list-inline-item">
+                    <img src="images/testimonial/feature-testimonial-thumb.jpg" alt="author-thumb">
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Thomas Johnson</a>
+                </li>
+                <li class="list-inline-item">
+                    August 8, 2017
+                </li>
+            </ul>
+        </div>
+        <!-- Post Details -->
+        <div class="post-details">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+        </div>
+    </article>
+                </div>
+                <div class="col-12">
+                    <!-- Pagination -->
+                    <nav class="pagination-nav">
+                      <ul class="pagination">
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true"><i class="ti-angle-right"></i></span>
+                            <span class="sr-only">Next</span>
+                          </a>
                         </li>
-                        <li class="list-inline-item">Jonathon Andrew , Themefisher.com</li>
-                    </ul>
+                      </ul>
+                    </nav>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<section class="feature section pt-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 ml-auto align-self-center">
-                <div class="feature-content">
-                    <!-- Feature Title -->
-                    <h2>Increase your productivity with <a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small
-                            Apps</a></h2>
-                    <!-- Feature Description -->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex
-                        ea commodo consequat.</p>
-                </div>
-                <!-- Testimonial Quote -->
-                <div class="testimonial">
-                    <p>
-                        "InVision is a window into everything that's being designed at Twitter. It gets all of our best
-                        work in one
-                        place."
-                    </p>
-                    <ul class="list-inline meta">
-                        <li class="list-inline-item">
-                            <img src="../../landing/images/testimonial/feature-testimonial-thumb.jpg" alt="">
-                        </li>
-                        <li class="list-inline-item">Jonathon Andrew , Themefisher.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6 mr-auto justify-content-center">
-                <!-- Feature mockup -->
-                <div class="image-content" data-aos="fade-left">
-                    <img class="img-fluid" src="../../landing/images/feature/feature-new-02.jpg" alt="ipad">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--====  End of Feature Grid  ====-->
-
-<!--==============================
-    =            Services            =
-    ===============================-->
-<section class="service section bg-gray">
-    <div class="container-fluid p-0">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2>An Interface For Lifestyle</h2>
-                    <p><a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small
-                            Apps</a> makes
-                        it easy to stay on top of your Life Style. No late tasks. No gimmicks.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-lg-6 align-self-center">
-                <!-- Feature Image -->
-                <div class="service-thumb left" data-aos="fade-right">
-                    <img class="img-fluid" src="../../landing/images/feature/iphone-ipad.jpg" alt="iphone-ipad">
-                </div>
-            </div>
-            <div class="col-lg-5 mr-auto align-self-center">
-                <div class="service-box">
-                    <div class="row align-items-center">
-                        <div class="col-md-6 col-xs-12">
-                            <!-- Service 01 -->
-                            <div class="service-item">
-                                <!-- Icon -->
-                                <i class="ti-bookmark"></i>
-                                <!-- Heading -->
-                                <h3>Easy Prototyping</h3>
-                                <!-- Description -->
-                                <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet
-                                    quam id dui</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12">
-                            <!-- Service 01 -->
-                            <div class="service-item">
-                                <!-- Icon -->
-                                <i class="ti-pulse"></i>
-                                <!-- Heading -->
-                                <h3>Sensor Bridge</h3>
-                                <!-- Description -->
-                                <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet
-                                    quam id dui</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12">
-                            <!-- Service 01 -->
-                            <div class="service-item">
-                                <!-- Icon -->
-                                <i class="ti-bar-chart"></i>
-                                <!-- Heading -->
-                                <h3>Strategist</h3>
-                                <!-- Description -->
-                                <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet
-                                    quam id dui</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12">
-                            <!-- Service 01 -->
-                            <div class="service-item">
-                                <!-- Icon -->
-                                <i class="ti-panel"></i>
-                                <!-- Heading -->
-                                <h3>Art Direction</h3>
-                                <!-- Description -->
-                                <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet
-                                    quam id dui</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--====  End of Services  ====-->
-
-
-<!--=================================
-    =            Video Promo            =
-    ==================================-->
-<section class="video-promo section bg-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="content-block">
-                    <!-- Heading -->
-                    <h2>Watch Our Promo Video</h2>
-                    <!-- Promotional Speech -->
-                    <p>Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet
-                        et,
-                        porttitor at sem. Vivamus </p>
-                    <!-- Popup Video -->
-                    <a data-fancybox href="https://www.youtube.com/watch?v=jrkvirglgaQ">
-                        <i class="ti-control-play video"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--====  End of Video Promo  ====-->
-
-<!--=================================
-    =            Testimonial            =
-    ==================================-->
-<section class="section testimonial" id="testimonial">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Testimonial Slider -->
-                <div class="testimonial-slider owl-carousel owl-theme">
-                    <!-- Testimonial 01 -->
-                    <div class="item">
-                        <div class="block shadow">
-                            <!-- Speech -->
-                            <p>
-                                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie
-                                malesuada.
-                                Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus.
-                                Lorem ipsum dolor
-                                sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus.
-                                Quisque velit nisi,
-                                pretium ut lacinia in, elementum id enim.
-                            </p>
-                            <!-- Person Thumb -->
-                            <div class="image">
-                                <img src="../../landing/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-                            </div>
-                            <!-- Name and Company -->
-                            <cite>Abraham Linkon , Themefisher.com</cite>
-                        </div>
-                    </div>
-                    <!-- Testimonial 01 -->
-                    <div class="item">
-                        <div class="block shadow">
-                            <!-- Speech -->
-                            <p>
-                                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie
-                                malesuada.
-                                Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus.
-                                Lorem ipsum dolor
-                                sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus.
-                                Quisque velit nisi,
-                                pretium ut lacinia in, elementum id enim.
-                            </p>
-                            <!-- Person Thumb -->
-                            <div class="image">
-                                <img src="../../landing/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-                            </div>
-                            <!-- Name and Company -->
-                            <cite>Abraham Linkon , Themefisher.com</cite>
-                        </div>
-                    </div>
-                    <!-- Testimonial 01 -->
-                    <div class="item">
-                        <div class="block shadow">
-                            <!-- Speech -->
-                            <p>
-                                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie
-                                malesuada.
-                                Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus.
-                                Lorem ipsum dolor
-                                sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus.
-                                Quisque velit nisi,
-                                pretium ut lacinia in, elementum id enim.
-                            </p>
-                            <!-- Person Thumb -->
-                            <div class="image">
-                                <img src="../../landing/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-                            </div>
-                            <!-- Name and Company -->
-                            <cite>Abraham Linkon , Themefisher.com</cite>
-                        </div>
-                    </div>
-                    <!-- Testimonial 01 -->
-                    <div class="item">
-                        <div class="block shadow">
-                            <!-- Speech -->
-                            <p>
-                                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie
-                                malesuada.
-                                Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus.
-                                Lorem ipsum dolor
-                                sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus.
-                                Quisque velit nisi,
-                                pretium ut lacinia in, elementum id enim.
-                            </p>
-                            <!-- Person Thumb -->
-                            <div class="image">
-                                <img src="../../landing/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-                            </div>
-                            <!-- Name and Company -->
-                            <cite>Abraham Linkon , Themefisher.com</cite>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 <!--====  End of Testimonial  ====-->
 
-<section class="call-to-action-app section bg-blue">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>It's time to change your mind</h2>
-                <p>Download over 2 million humans .Get <a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/">Small
-                        Apps</a> free forever!
-                    <br>We say you won’t look back.
-                </p>
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="" class="btn btn-rounded-icon">
-                            <i class="ti-apple"></i>
-                            Iphone
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="" class="btn btn-rounded-icon">
-                            <i class="ti-android"></i>
-                            Android
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="" class="btn btn-rounded-icon">
-                            <i class="ti-microsoft-alt"></i>
-                            Windows
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+
 @endsection
