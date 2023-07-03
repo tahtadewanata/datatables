@@ -5,30 +5,14 @@
             <div class="row">
                 <div class="col-sm-8 m-auto">
                     <!-- Page Title -->
-                    <h1>Data Penduduk Usia Sekolah</h1>
+                    <h1>Data Dasar</h1>
                     <!-- Page Description -->
                     
                 </div>
             </div>
         </div>
-        {{-- </section>
 
-    <section class="section"> --}}
         <div class="container">
-                  <button onclick="downloadImage();">save as image</button> 
-            <form>
-                <div class="form-group">
-                    <br>
-                    <label for="exampleFormControlSelect1"><strong>Tahun</strong></label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="tahun">
-                        <option value="">Pilih Tahun</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                    </select>
-                </div>
-            </form>
             <div class="row">
                 <div class="col-12">
                     <div class="section-title mb-0">
@@ -36,23 +20,14 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2">No</th>
-                                    <th rowspan="2">Kecamatan</th>
-                                    <th colspan="2">Jenis Kelamin SD Swasta</th>
-                                    <th rowspan="2">Jumlah</th>
-                                    <th colspan="2">Persentase</th>
-                                    <th rowspan="2" width="15%">Actions</th>
-                                </tr>
-                                <tr>
-                                    <th>L</th>
-                                    <th>P</th>
-                                    <th>L</th>
-                                    <th>P</th>
+                                    <th rowspan="2">Nama Tabel</th>
+                                    <th rowspan="2" width="15%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
-                    </div>
+                    </div>  
                 </div>
                 <div class="col-12">
                     <div class="section-title mb-0">
@@ -84,26 +59,6 @@
                         name: 'kecamatan'
                     },
                     {
-                        data: 'jk_l',
-                        name: 'jk_l'
-                    },
-                    {
-                        data: 'jk_p',
-                        name: 'jk_p'
-                    },
-                    {
-                        data: 'sum',
-                        name: 'sum'
-                    },
-                    {
-                        data: 'pr_l',
-                        name: 'pr_l'
-                    },
-                    {
-                        data: 'pr_p',
-                        name: 'pr_p'
-                    },
-                    {
                         data: 'actions',
                         name: 'actions',
                         orderable: false,
@@ -111,21 +66,9 @@
                     },
                 ],
                 'columnDefs': [ {
-                'targets': [0,1,2,3,4,5,6,7], /* column index */
+                'targets': [0,1,2], /* column index */
                 'orderable': false, /* true or false */
      }]
-            });
-            $('#exampleFormControlSelect1').on('change', function() {
-                // Ketika nilai elemen select dengan ID exampleFormControlSelect1 berubah
-
-                // Mengambil nilai yang dipilih
-                let tahun = $(this).val();
-
-                // Membentuk URL dengan menambahkan parameter tahun
-                let urls = '{!! route('chartTable') !!}' + '?tahun=' + tahun;
-
-                // Memperbarui URL sumber data DataTable dan memuat ulang data
-                myTable.ajax.url(urls).load();
             });
         });
 

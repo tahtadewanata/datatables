@@ -4,6 +4,7 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DatatableController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\DatadasarController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +70,7 @@ Auth::routes();
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
 Route::get('/pendudukusiasekolah', [LandingController::class, 'chartTable'])->name('chartTable');
 Route::get('/get-chart-table', [LandingController::class, 'getChartLanding'])->name('getChartTable');
+Route::get('/data-dasar', [DatadasarController::class, 'index'])->name('dasar.index');
 
 Route::group(['middleware' => ['auth']], function () {
 
