@@ -8,16 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item @@about">
-                    <a class="nav-link" href="#">Beranda</a>
+                    <a class="nav-link" href="{{ route('home.index') }}">Beranda</a>
                 </li>
                 <li class="nav-item @@contact">
-                    <a class="nav-link" href="{{ route('chartTable') }}">Table & Chart</a>
+                    <a class="nav-link" href="{{ route('chartTable') }}">Data Terpilah</a>
                 </li>
                 <li class="nav-item @@contact">
                     @auth
                         <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                     @else
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('login') }}">Masuk</a>
                     @endauth
                 </li>
             </ul>

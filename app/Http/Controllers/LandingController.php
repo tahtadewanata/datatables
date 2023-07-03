@@ -17,12 +17,37 @@ class LandingController extends Controller
     public function index()
     {
         //
-        return view('landing.index');
+        $data = [
+            'title' => 'Beranda | SIDANDA',
+            'kabar' => $this->get_kabar_api()
+        ];
+        return view('landing.index', $data);
+    }
+
+    public function get_kabar_api()
+    {
+        $args = array("username" => "admin", "password" => "nganjukkab");
+        $url = "https://www.nganjukkab.go.id/api-nganjukkab/get_kabar";
+        $content = json_encode($args);
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $json_response = curl_exec($curl);
+        curl_close($curl);
+        $response = json_decode($json_response, true);
+        return $response;
     }
 
     public function chartTable(Request $request)
     {
         //
+        $judul = [
+            'title' => 'Data Penduduk Usia Sekolah | SIDANDA',
+        ];
         $data = Kecamatan::when($request->has('tahun'), function ($kec) use ($request) {
             // Ketika parameter 'tahun' ada dalam permintaan, melakukan filtering berdasarkan tahun
             $kec->where('tahun', $request->tahun);
@@ -102,7 +127,7 @@ class LandingController extends Controller
                 ->make(true);
         }
 
-        return view('landing.pages.chart_table');
+        return view('landing.pages.chart_table', $judul);
     }
 
     public function getChartLanding(Request $request)

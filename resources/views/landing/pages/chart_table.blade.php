@@ -5,10 +5,9 @@
             <div class="row">
                 <div class="col-sm-8 m-auto">
                     <!-- Page Title -->
-                    <h1>About Small Apps</h1>
+                    <h1>Data Penduduk Usia Sekolah</h1>
                     <!-- Page Description -->
-                    <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus magna justo, lacinia
-                        eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta.</p>
+                    
                 </div>
             </div>
         </div>
@@ -109,7 +108,11 @@
                         orderable: false,
                         searchable: false
                     },
-                ]
+                ],
+                'columnDefs': [ {
+                'targets': [0,1,2,3,4,5,6,7], /* column index */
+                'orderable': false, /* true or false */
+     }]
             });
             $('#exampleFormControlSelect1').on('change', function() {
                 // Ketika nilai elemen select dengan ID exampleFormControlSelect1 berubah
