@@ -16,12 +16,19 @@ class AdminSeeder extends Seeder
     public function run()
     {
         //
-        $user = [
-            'name' => 'admin',
-            'email' => 'admin@localhost',
-            'password' => bcrypt('admin'),
+        $users = [
+            [
+                'name' => 'admin',
+                'email' => 'admin@localhost',
+                'password' => bcrypt('admin'),
+            ],
+            [
+                'name' => 'admin2',
+                'email' => 'admin2@localhost',
+                'password' => bcrypt('admin2'),
+            ],
         ];
 
-        User::create($user);
+        User::insert($users);
     }
 }
