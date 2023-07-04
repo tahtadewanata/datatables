@@ -1,4 +1,4 @@
-<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
+<nav class="navbar main-nav navbar-expand-lg shadow sticky-top px-2 px-sm-0 py-2 py-lg-0">
     <div class="container">
         <a class="navbar-brand" href="index.html"><img src="../../landing/images/Logo-Sidanda-Dark-Only.png" height="38" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"

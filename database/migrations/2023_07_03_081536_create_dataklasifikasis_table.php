@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('namadata');
             $table->enum('klasifikasi', ['DASAR', 'TERPILAH', 'ANAK'])->default('TERPILAH');
-            $table->enum('bidang', ['KESEHATAN', 'PENDIDIKAN', 'SDM', 'SOSHUM', 'EKONOMI', 'KEKERASAN_PR', 'TUMBUHKEMBANG', 'PERLINDUNGAN'])->default('KESEHATAN');
+            $table->enum('bidang', ['KESEHATAN', 'PENDIDIKAN', 'POLITIK', 'SOSIAL', 'HUKUM DAN HAM', 'EKONOMI DAN KETENAGAKERJAAN'])->default('KESEHATAN');
             $table->timestamps();
         });
     }

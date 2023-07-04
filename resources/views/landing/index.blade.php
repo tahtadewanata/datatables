@@ -75,7 +75,7 @@
 <section class="section page-title">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8 m-auto">
+			<div class="heading-block col-sm-8 m-auto">
 				<!-- Page Title -->
 				<h2>SEPUTAR NGANJUK</h2>
 			</div>
