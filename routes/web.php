@@ -70,7 +70,10 @@ Auth::routes();
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
 Route::get('/pendudukusiasekolah', [LandingController::class, 'chartTable'])->name('chartTable');
 Route::get('/get-chart-table', [LandingController::class, 'getChartLanding'])->name('getChartTable');
+
+//DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'index'])->name('dasar.index');
+Route::get('/dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
 
 Route::group(['middleware' => ['auth']], function () {
 
