@@ -25,9 +25,13 @@ class DatadasarController extends Controller
             'title' => 'Data Dasar | SIDANDA',
         ];
         if (request()->ajax()) {
-            $dataklasifikasi = Dataklasifikasi::query();
+            $dataklasifikasi = Dataklasifikasi::where('klasifikasi','DASAR')->get(); //eloquent where clause. src: https://techvblogs.com/blog/laravel-multiple-where-condition-example
             return DataTables::of($dataklasifikasi)
-
+                ->addIndexColumn()
+                ->addColumn('actions', function () {
+                    return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+                })
+                ->rawColumns(['actions'])
                 ->make();
         }
 

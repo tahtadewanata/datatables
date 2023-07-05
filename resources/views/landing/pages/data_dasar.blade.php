@@ -19,9 +19,9 @@
                         <table id="exampleData" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th rowspan="2">No</th>
-                                    <th rowspan="2">Nama Tabel</th>
-                                    <th rowspan="2" width="15%">Aksi</th>
+                                    <th>No</th>
+                                    <th>Nama Tabel</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,6 +45,8 @@
     <script>
         $(function() {
             var myTable = $('#exampleData').DataTable({
+                lengthChange: false,
+                searching: false,
                 processing: true,
                 serverSide: true,
                 ajax: '{{ route('getdasar') }}',
@@ -65,6 +67,17 @@
                         searchable: false
                     },
                 ],
+                'columnDefs': [{
+                    'targets': [0, 1, 2],
+                    /* column index */
+                    'orderable': false,
+                    /* true or false */
+                }],
+                "aoColumnDefs": [{
+                "aTargets": ['details'],
+                "bSearchable": false,
+                "bSortable": false
+                }]
             });
         });
     </script>
