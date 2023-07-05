@@ -7,7 +7,7 @@
                     <!-- Page Title -->
                     <h1>Data Dasar</h1>
                     <!-- Page Description -->
-                    
+
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                             <tbody>
                             </tbody>
                         </table>
-                    </div>  
+                    </div>
                 </div>
                 <div class="col-12">
                     <div class="section-title mb-0">
@@ -67,6 +67,5 @@
                 ],
             });
         });
-
     </script>
 @endsection

@@ -7,7 +7,7 @@
                     <!-- Page Title -->
                     <h1>Data Penduduk Usia Sekolah</h1>
                     <!-- Page Description -->
-                    
+
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
 
     <section class="section"> --}}
         <div class="container">
-                  <button onclick="downloadImage();">save as image</button> 
+            <button onclick="downloadImage();">save as image</button>
             <form>
                 <div class="form-group">
                     <br>
@@ -110,10 +110,12 @@
                         searchable: false
                     },
                 ],
-                'columnDefs': [ {
-                'targets': [0,1,2,3,4,5,6,7], /* column index */
-                'orderable': false, /* true or false */
-     }]
+                'columnDefs': [{
+                    'targets': [0, 1, 2, 3, 4, 5, 6, 7],
+                    /* column index */
+                    'orderable': false,
+                    /* true or false */
+                }]
             });
             $('#exampleFormControlSelect1').on('change', function() {
                 // Ketika nilai elemen select dengan ID exampleFormControlSelect1 berubah
@@ -196,7 +198,8 @@
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr
-                        .responseText); // Menampilkan pesan error pada konsol jika terjadi kesalahan
+                            .responseText
+                            ); // Menampilkan pesan error pada konsol jika terjadi kesalahan
                     }
                 });
             }
