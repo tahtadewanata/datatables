@@ -16,4 +16,14 @@ class Dataklasifikasi extends Model
         'klasifikasi',
         'bidang'
     ];
+
+    public function klasifikasi()
+    {
+        return $this->belongsTo(Klasifikasi::class, 'id_klasifikasi');
+    }
+
+    public function bidang()
+    {
+        return $this->belongsTo(Bidang::class, 'id_bidang');
+    }
 }

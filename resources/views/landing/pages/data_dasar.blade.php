@@ -57,8 +57,8 @@
                         orderable: false
                     },
                     {
-                        data: 'namadata',
-                        name: 'namadata'
+                        data: 'data',
+                        name: 'data'
                     },
                     {
                         data: 'actions',

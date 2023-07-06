@@ -35,21 +35,52 @@ class DatadasarController extends Controller
             // })
             // ->rawColumns(['actions'])
             //     ->make();
+            
+            // $dataKlasifikasi = DataKlasifikasi::with('klasifikasi', 'bidang')->get();
+            // return Datatables::of($dataKlasifikasi)
+            // ->addIndexColumn()
+            // ->addColumn('actions', function () {
+            //     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+            // })
+            // ->rawColumns(['actions'])
+            // ->make(true);
+            $dataKlasifikasi =  DataKlasifikasi::with('klasifikasi', 'bidang')
+                                ->where('klasifikasi->namaklasifikasi', 'DASAR') 
+                                //->whereHas('klasifikasi', function ($query) {
+                                //$query->where('namaklasifikasi', 'KELEMBAGAAN');}) PAKAI INI KETIKA AMBIL WHERE CLAUSE DARI TABEL JOIN
+                                ->get();
 
-            // Dengan Query Builder
-            $data = DB::table('dataklasifikasi')
-                ->join('bidang', 'dataklasifikasi.id_bidang', '=', 'bidang.id')
-                ->join('klasifikasi', 'dataklasifikasi.id_klasifikasi', '=', 'klasifikasi.id')
-                ->select('dataklasifikasi.*', 'bidang.namabidang', 'klasifikasi.namaklasifikasi')
-                ->where('dataklasifikasi.id_klasifikasi', '=', 3)
-                ->get();
-            return Datatables::of($data)
+            return datatables()->of($dataKlasifikasi)
                 ->addIndexColumn()
+                ->addColumn('data', function($row){
+                    return $row->namadata;
+                })
+                // ->addColumn('klasifikasi', function($row){
+                //     return $row->klasifikasi->namaklasifikasi;
+                // })
+                // ->addColumn('bidang', function($row){
+                //     return $row->bidang->namabidang;
+                // })
                 ->addColumn('actions', function () {
                     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
                 })
                 ->rawColumns(['actions'])
                 ->make(true);
+
+            // Dengan Query Builder
+            // $data = DB::table('dataklasifikasi')
+            //     ->join('bidang', 'dataklasifikasi.id_bidang', '=', 'bidang.id')
+            //     ->join('klasifikasi', 'dataklasifikasi.id_klasifikasi', '=', 'klasifikasi.id')
+            //     ->select('dataklasifikasi.*', 'bidang.namabidang', 'klasifikasi.namaklasifikasi')
+            //     ->where('dataklasifikasi.id_klasifikasi', '=', 3)
+            //     ->get();
+            // return Datatables::of($data)
+            //     ->addIndexColumn()
+                // ->addColumn('actions', function () {
+                //     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+                // })
+                // ->rawColumns(['actions'])
+            //     ->make(true);
         }
 
         return view('landing.pages.data_dasar', $judul);

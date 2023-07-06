@@ -13,4 +13,9 @@ class Bidang extends Model
     protected $fillable = [
         'namabidang',
     ];
+
+    public function dataKlasifikasi()
+    {
+        return $this->hasMany(DataKlasifikasi::class, 'id_bidang');
+    }
 }

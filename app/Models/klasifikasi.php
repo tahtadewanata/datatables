@@ -14,4 +14,9 @@ class klasifikasi extends Model
     protected $fillable = [
         'namaklasifikasi',
     ];
+
+    public function dataKlasifikasi()
+    {
+        return $this->hasMany(DataKlasifikasi::class, 'id_klasifikasi');
+    }
 }
