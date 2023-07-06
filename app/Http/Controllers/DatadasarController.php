@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dataklasifikasi;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
+
 
 class DatadasarController extends Controller
 {
@@ -25,14 +27,29 @@ class DatadasarController extends Controller
             'title' => 'Data Dasar | SIDANDA',
         ];
         if (request()->ajax()) {
-            $dataklasifikasi = Dataklasifikasi::where('klasifikasi','DASAR')->get(); //eloquent where clause. src: https://techvblogs.com/blog/laravel-multiple-where-condition-example
-            return DataTables::of($dataklasifikasi)
+            // $dataklasifikasi = Dataklasifikasi::where('klasifikasi', 'DASAR')->get(); //eloquent where clause. src: https://techvblogs.com/blog/laravel-multiple-where-condition-example
+            // return DataTables::of($dataklasifikasi)
+            //     ->addIndexColumn()
+            // ->addColumn('actions', function () {
+            //     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+            // })
+            // ->rawColumns(['actions'])
+            //     ->make();
+
+            // Dengan Query Builder
+            $data = DB::table('dataklasifikasi')
+                ->join('bidang', 'dataklasifikasi.id_bidang', '=', 'bidang.id')
+                ->join('klasifikasi', 'dataklasifikasi.id_klasifikasi', '=', 'klasifikasi.id')
+                ->select('dataklasifikasi.*', 'bidang.namabidang', 'klasifikasi.namaklasifikasi')
+                ->where('dataklasifikasi.id_klasifikasi', '=', 3)
+                ->get();
+            return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('actions', function () {
                     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
                 })
                 ->rawColumns(['actions'])
-                ->make();
+                ->make(true);
         }
 
         return view('landing.pages.data_dasar', $judul);
