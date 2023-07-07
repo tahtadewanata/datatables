@@ -11,6 +11,9 @@
                     <a class="nav-link" href="{{ route('home.index') }}">Beranda</a>
                 </li>
                 <li class="nav-item @@contact">
+                    <a class="nav-link" href="{{ route('getdasar') }}">Data Dasar</a>
+                </li>
+                <li class="nav-item @@contact">
                     <a class="nav-link" href="{{ route('chartTable') }}">Data Terpilah</a>
                 </li>
                 <li class="nav-item @@contact">

@@ -72,8 +72,7 @@ Route::get('/pendudukusiasekolah', [LandingController::class, 'chartTable'])->na
 Route::get('/get-chart-table', [LandingController::class, 'getChartLanding'])->name('getChartTable');
 
 //DATA DASAR
-Route::get('/data-dasar', [DatadasarController::class, 'index'])->name('dasar.index');
-Route::get('/dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
+Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
 
 Route::group(['middleware' => ['auth']], function () {
 

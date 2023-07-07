@@ -35,7 +35,7 @@ class DatadasarController extends Controller
             // })
             // ->rawColumns(['actions'])
             //     ->make();
-            
+
             // $dataKlasifikasi = DataKlasifikasi::with('klasifikasi', 'bidang')->get();
             // return Datatables::of($dataKlasifikasi)
             // ->addIndexColumn()
@@ -45,20 +45,21 @@ class DatadasarController extends Controller
             // ->rawColumns(['actions'])
             // ->make(true);
             $dataKlasifikasi =  DataKlasifikasi::with('klasifikasi', 'bidang')
-                                ->where('klasifikasi->namaklasifikasi', 'DASAR') 
-                                //->whereHas('klasifikasi', function ($query) {
-                                //$query->where('namaklasifikasi', 'KELEMBAGAAN');}) PAKAI INI KETIKA AMBIL WHERE CLAUSE DARI TABEL JOIN
-                                ->get();
+                // ->where('id_klasifikasi', 1)
+                ->whereHas('klasifikasi', function ($query) {
+                    $query->where('namaklasifikasi', 'KELEMBAGAAN');
+                }) // PAKAI INI KETIKA AMBIL WHERE CLAUSE DARI TABEL JOIN
+                ->get();
 
             return datatables()->of($dataKlasifikasi)
                 ->addIndexColumn()
-                ->addColumn('data', function($row){
+                ->addColumn('data', function ($row) {
                     return $row->namadata;
                 })
-                // ->addColumn('klasifikasi', function($row){
+                // ->addColumn('klasifikasi', function ($row) {
                 //     return $row->klasifikasi->namaklasifikasi;
                 // })
-                // ->addColumn('bidang', function($row){
+                // ->addColumn('bidang', function ($row) {
                 //     return $row->bidang->namabidang;
                 // })
                 ->addColumn('actions', function () {
@@ -76,10 +77,10 @@ class DatadasarController extends Controller
             //     ->get();
             // return Datatables::of($data)
             //     ->addIndexColumn()
-                // ->addColumn('actions', function () {
-                //     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
-                // })
-                // ->rawColumns(['actions'])
+            // ->addColumn('actions', function () {
+            //     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+            // })
+            // ->rawColumns(['actions'])
             //     ->make(true);
         }
 

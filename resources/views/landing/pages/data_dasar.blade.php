@@ -72,6 +72,7 @@
                     /* column index */
                     'orderable': false,
                     /* true or false */
+                    'className': 'dt-head-center dt-body-left',
                 }],
                 "aoColumnDefs": [{
                 "aTargets": ['details'],
