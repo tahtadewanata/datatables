@@ -26,7 +26,7 @@
         <div class="row align-items-center">
             <div class="col-md-6 order-2 order-md-1 text-center text-md-left">
                 <h1 class="text-white font-weight-bold mb-4">SISTEM INFORMASI DATA GENDER DAN ANAK</h1>
-                <p class="text-white mb-5">data terpilah berdasarkan jenis kelamin menjadi inti dalam 
+                <p class="text-white mb-5">Data terpilah berdasarkan jenis kelamin menjadi inti dalam 
                     menghasilkan Statistik Gender yang didalamnya mengandung informasi isu gender.</p>
                 {{-- <a href="#" class="btn btn-main-md">Download</a> --}}
             </div>

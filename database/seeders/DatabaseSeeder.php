@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i = 0; $i < 5000; $i++) {
+        for ($i = 0; $i < 250; $i++) {
             DataSiswa::create([
                 'kecamatan_id' => rand(1, 15),
                 'nama_siswa' => $faker->name,

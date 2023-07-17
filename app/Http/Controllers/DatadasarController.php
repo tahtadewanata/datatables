@@ -47,7 +47,7 @@ class DatadasarController extends Controller
             $dataKlasifikasi =  DataKlasifikasi::with('klasifikasi', 'bidang')
                 // ->where('id_klasifikasi', 1)
                 ->whereHas('klasifikasi', function ($query) {
-                    $query->where('namaklasifikasi', 'KELEMBAGAAN');
+                    $query->where('namaklasifikasi', 'DASAR');
                 }) // PAKAI INI KETIKA AMBIL WHERE CLAUSE DARI TABEL JOIN
                 ->get();
 
