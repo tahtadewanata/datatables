@@ -26,8 +26,8 @@ class LandingController extends Controller
 
     public function get_kabar_api()
     {
-        $args = array("username" => "admin", "password" => "nganjukkab");
-        $url = "https://www.nganjukkab.go.id/api-nganjukkab/get_kabar";
+        $args = array("username" => "admin", "password" => "nganjukkab", "limit" => 6);
+        $url = "http://www.nganjukkab.go.id/api-nganjukkab/get_kabar";
         $content = json_encode($args);
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, false);
