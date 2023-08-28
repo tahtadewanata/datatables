@@ -3,6 +3,10 @@
 use App\Models\DataSiswa;
 use App\Models\Kecamatan;
 use Database\Seeders\AdminSeeder;
+use Database\Seeders\BidangSeeder;
+use Database\Seeders\DataklasifikasiSeeder;
+use Database\Seeders\KlasifikasiSeeder;
+use Database\Seeders\KecamatanSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
@@ -18,12 +22,12 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 15; $i++) {
-            Kecamatan::create([
-                'nama_kecamatan' => $faker->city,
-                'tahun' => $faker->numberBetween(2020, 2023),
-            ]);
-        }
+        // for ($i = 0; $i < 15; $i++) {
+        //     Kecamatan::create([
+        //         'nama_kecamatan' => $faker->city,
+        //         'tahun' => $faker->numberBetween(2020, 2023),
+        //     ]);
+        // }
 
         for ($i = 0; $i < 250; $i++) {
             DataSiswa::create([
@@ -33,6 +37,12 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $this->call(AdminSeeder::class);
+        $this->call([
+            AdminSeeder::class,
+            BidangSeeder::class,
+            DataklasifikasiSeeder::class,
+            KecamatanSeeder::class,
+            KlasifikasiSeeder::class
+        ]);
     }
 }

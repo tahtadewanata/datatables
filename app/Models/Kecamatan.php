@@ -17,8 +17,18 @@ class Kecamatan extends Model
         return $this->hasMany(DataSiswa::class, 'kecamatan_id');
     }
 
+    public function sdswasta()
+    {
+        return $this->hasMany(Sdswasta::class, 'kecamatan_id');
+    }
+
     public function countjk($jk)
     {
         return $this->siswa?->where('jk', $jk)->count();
+    }
+
+    public function countjkswasta($jk)
+    {
+        return $this->sdswasta?->where('jk', $jk)->count();
     }
 }

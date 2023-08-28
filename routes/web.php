@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\UsiasekolahController;
 use App\Http\Controllers\DatatableController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LandingController;
@@ -69,6 +70,7 @@ Auth::routes();
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
 Route::get('/pendudukusiasekolah', [LandingController::class, 'chartTable'])->name('chartTable');
+Route::get('/sdswasta', [UsiasekolahController::class, 'getsdswasta'])->name('getsdswasta');
 Route::get('/get-chart-table', [LandingController::class, 'getChartLanding'])->name('getChartTable');
 
 //DATA DASAR
