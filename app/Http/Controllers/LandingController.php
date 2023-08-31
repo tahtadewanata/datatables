@@ -175,6 +175,44 @@ class LandingController extends Controller
         ]);
     }
 
+    public function getChartLanding2(Request $request)
+    {
+        $query = Kecamatan::query(); // Start with a base query
+
+        if ($request->has('tahun')) {
+            // If 'tahun' parameter is provided, filter by it
+            $query->whereHas('sdswasta', function ($sdswasta) use ($request) {
+                $sdswasta->where('tahun', $request->tahun);
+            });
+        }
+
+        $data = Kecamatan::with('sdswasta')->get();
+        $labels = $data->pluck('nama_kecamatan');
+        print_r($labels);
+
+        $lakiData = $data->pluck('sdswasta')->map(function ($sdswasta) {
+            if ($sdswasta) {
+                return $sdswasta[0]['jk_lk'] ?? null;
+            }
+            return null;
+        });
+        $perempuanData = $data->pluck('sdswasta')->map(function ($sdswasta) {
+            if ($sdswasta) {
+                return $sdswasta[0]['jk_pr'] ?? null;
+            }
+            return null;
+        });
+
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'laki' => $lakiData,
+                'perempuan' => $perempuanData
+            ]
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

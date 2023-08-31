@@ -27,24 +27,20 @@ class UsiasekolahController extends Controller
             'title' => 'Data Penduduk Usia Sekolah | SIDANDA',
             'desc' => 'Penduduk Usia Sekolah Dasar Swasta (7 - 12 tahun) Berdasarkan Jenis Kelamin dan Kecamatan Kabupaten Nganjuk Tahun 2021'
         ];
-        $data = Kecamatan::when($request->has('tahun'), function ($kec) use ($request) {
+        $data = Sdswasta::when($request->has('tahun'), function ($kec) use ($request) {
             // Ketika parameter 'tahun' ada dalam permintaan, melakukan filtering berdasarkan tahun
             $kec->where('tahun', $request->tahun);
         });
 
         if (!$request->filled('tahun')) {
-            // Jika parameter 'tahun' tidak ada atau kosong dalam permintaan, mengambil semua data kecamatan dengan relasi siswa
             $data = Kecamatan::with('sdswasta');
         }
-
         if ($request->ajax()) {
             // Jika permintaan adalah permintaan AJAX
             // Maka akan return DataTable
-            print_r('woey tes');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('kecamatan', function ($item) {
-
                     // Mengembalikan nama kecamatan pada baris tabel.
                     return $item->nama_kecamatan;
                 })
@@ -53,7 +49,13 @@ class UsiasekolahController extends Controller
                      * Menghitung jumlah item dengan flag 'L' pada baris tabel,
                      * dan mengembalikan jumlah tersebut.
                      */
-                    return $item->countjkswasta('L');
+                    // return $item->jk_l;
+
+                    $sdswasta = $item['sdswasta'][0] ?? null;
+                    if ($sdswasta) {
+                        return $sdswasta['jk_lk'];
+                    }
+                    return null;
                 })
 
                 ->addColumn('jk_p', function ($item) {
@@ -61,23 +63,39 @@ class UsiasekolahController extends Controller
                      * Menghitung jumlah item dengan flag 'P' pada baris tabel,
                      * dan mengembalikan jumlah tersebut.
                      */
-                    return $item->countjkswasta('P');
+                    $sdswasta = $item['sdswasta'][0] ?? null;
+                    if ($sdswasta) {
+                        return $sdswasta['jk_pr'];
+                    }
+                    return null;
                 })
 
                 ->addColumn('sum', function ($item) {
                     // Menghitung jumlah dari hitungan 'L' dan 'P'.
-                    $sum =  $item->countjkswasta('L') +  $item->countjkswasta('P');
                     // Mengatur jumlah tersebut ke dalam item.
-                    $item->sum = $sum;
+                    // $sum = $item->sumjk;
                     // Mengembalikan jumlah tersebut.
-                    return $sum;
+                    // return $sum;
+                    $sdswasta = $item['sdswasta'][0] ?? null;
+                    if ($sdswasta) {
+                        $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
+                        return $sum;
+                    }
+                    return null;
                 })
                 ->addColumn('pr_l', function ($item) {
                     /**
                      * Menghitung persentase item dengan flag 'L' dari total jumlah item,
                      * dan mengembalikan persentase tersebut dalam bentuk string dengan 2 angka desimal.
                      */
-                    return number_format(($item->countjkswasta('L') / $item->sum) * 100, 2);
+                    // return number_format(($item->countjkswasta('L') / $item->sum) * 100, 2);
+                    $sdswasta = $item['sdswasta'][0] ?? null;
+                    if ($sdswasta) {
+                        $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
+                        $percentage = number_format($sdswasta['jk_lk'] / $sum * 100, 2);
+                        return $percentage;
+                    }
+                    return null;
                 })
 
                 ->addColumn('pr_p', function ($item) {
@@ -85,7 +103,14 @@ class UsiasekolahController extends Controller
                      * Menghitung persentase item dengan flag 'P' dari total jumlah item,
                      * dan mengembalikan persentase tersebut dalam bentuk string dengan 2 angka desimal.
                      */
-                    return number_format(($item->countjkswasta('P') / $item->sum) * 100, 2);
+                    // return number_format(($item->countjkswasta('P') / $item->sum) * 100, 2);
+                    $sdswasta = $item['sdswasta'][0] ?? null;
+                    if ($sdswasta) {
+                        $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
+                        $percentage = number_format($sdswasta['jk_pr'] / $sum * 100, 2);
+                        return $percentage;
+                    }
+                    return null;
                 })
 
                 // Menambahkan kolom 'actions'

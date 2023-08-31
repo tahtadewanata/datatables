@@ -33,7 +33,9 @@ class DatatableController extends Controller
                     return $item->nama_kecamatan;
                 })
                 ->addColumn('jk_l', function ($item) {
-                    return $item->countjk('L');
+                    return $sds = Sdswasta::sum('jk_lk') 
+                    //  $item->countjk('L');
+                    // ini apa? ini buat di halaman adminnya mas
                 })
                 ->addColumn('jk_p', function ($item) {
                     return $item->countjk('P');

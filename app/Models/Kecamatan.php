@@ -27,8 +27,9 @@ class Kecamatan extends Model
         return $this->siswa?->where('jk', $jk)->count();
     }
 
-    public function countjkswasta($jk)
+    public function sumjk()
     {
-        return $this->sdswasta?->where('jk', $jk)->count();
+        return $this->sdswasta?->groupBy('kecamatan.id')->sum($jk);
+        // return ($this->sdswasta?->where('jk', 'Laki')->count() +  $this->sdswasta?->where('jk', 'Perempuan')->sum());
     }
 }
