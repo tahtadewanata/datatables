@@ -7,6 +7,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\DatadasarController;
 use App\Http\Controllers\UserController;
+use App\Models\Sdswasta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\ItemController;
@@ -67,6 +68,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('totalusiasekolah/list', [TotalusiasekolahController::class, 'getTotalusiasekolah'])->name('totalusiasekolah.list');
 
 Auth::routes();
+
+Route::get('/test-sum', function () {
+    $sds = Sdswasta::sum('jk_lk');
+
+    return "Total jumlah: $sds";
+});
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
 Route::get('/pendudukusiasekolah', [LandingController::class, 'chartTable'])->name('chartTable');
