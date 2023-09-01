@@ -69,10 +69,19 @@
 
     <script>
         $(function() {
+            let tahun = $('#exampleFormControlSelect1').val();
             var myTable = $('#exampleData').DataTable({
                 processing: true,
-                serverSide: true,
-                ajax: '{{ route('getsdswasta') }}',
+                serverSide: true,               
+                ajax: {
+                url: '{{ route('getsdswasta') }}',
+                
+                type: "GET",
+                dataType: "JSON",
+                error: function(xhr, error, code) {
+                    alertModalError(xhr); 
+                }
+            },               
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -84,12 +93,12 @@
                         name: 'kecamatan'
                     },
                     {
-                        data: 'jk_l',
-                        name: 'jk_l'
+                        data: 'jk_lk',
+                        name: 'jk_lk' //dari sini bukan ? mungkin 
                     },
                     {
-                        data: 'jk_p',
-                        name: 'jk_p'
+                        data: 'jk_pr',
+                        name: 'jk_pr'
                     },
                     {
                         data: 'sum',
@@ -124,7 +133,7 @@
                 let tahun = $(this).val();
 
                 // Membentuk URL dengan menambahkan parameter tahun
-                let urls = '{!! route('chartTable') !!}' + '?tahun=' + tahun;
+                let urls = '{!! route('getsdswasta') !!}' + '?tahun=' + tahun;
 
                 // Memperbarui URL sumber data DataTable dan memuat ulang data
                 myTable.ajax.url(urls).load();
@@ -135,13 +144,16 @@
         let myChart;
 
         $(document).ready(function() {
+            reloadChart(); // Memanggil fungsi reloadChart saat dokumen selesai dimuat
             // Ketika dokumen selesai dimuat
             $('#exampleFormControlSelect1').change(function() {
                 // Ketika nilai elemen select dengan ID exampleFormControlSelect1 berubah
                 reloadChart(); // Memanggil fungsi reloadChart untuk memperbarui chart
-            });
+            });           
+           
+        });
 
-            function reloadChart() {
+        function reloadChart() {
                 // Fungsi untuk memperbarui chart
 
                 // Mengambil nilai yang dipilih dari elemen select
@@ -203,8 +215,6 @@
                     }
                 });
             }
-            reloadChart(); // Memanggil fungsi reloadChart saat dokumen selesai dimuat
-        });
 
         function downloadImage() {
             myChart.options.title.text = 'New Chart Title';

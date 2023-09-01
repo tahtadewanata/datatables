@@ -27,14 +27,19 @@ class UsiasekolahController extends Controller
             'title' => 'Data Penduduk Usia Sekolah | SIDANDA',
             'desc' => 'Penduduk Usia Sekolah Dasar Swasta (7 - 12 tahun) Berdasarkan Jenis Kelamin dan Kecamatan Kabupaten Nganjuk Tahun 2021'
         ];
+
         $data = Sdswasta::when($request->has('tahun'), function ($kec) use ($request) {
             // Ketika parameter 'tahun' ada dalam permintaan, melakukan filtering berdasarkan tahun
-            $kec->where('tahun', $request->tahun);
+            $kec->whereYear('tahun', $request->tahun)->get();
+            // $kec->where('tahun', $request->tahun);
         });
 
         if (!$request->filled('tahun')) {
-            $data = Kecamatan::with('sdswasta');
+            $data = Sdswasta::get();
+            // $data = Kecamatan::leftJoin('sdswasta','sdswasta.kecamatan_id', '=', 'kecamatan.id'); //kalau begini kayaknya bisa mas
+            // $data->whereYear('tahun', $request->tahun);
         }
+
         if ($request->ajax()) {
             // Jika permintaan adalah permintaan AJAX
             // Maka akan return DataTable
@@ -42,32 +47,34 @@ class UsiasekolahController extends Controller
                 ->addIndexColumn()
                 ->addColumn('kecamatan', function ($item) {
                     // Mengembalikan nama kecamatan pada baris tabel.
-                    return $item->nama_kecamatan;
+                    return $item->kecamatan->nama_kecamatan;
                 })
-                ->addColumn('jk_l', function ($item) {
+                ->addColumn('jk_lk', function ($item) {
                     /**
                      * Menghitung jumlah item dengan flag 'L' pada baris tabel,
                      * dan mengembalikan jumlah tersebut.
                      */
-                    // return $item->jk_l;
+                    return $item->jk_lk;
 
-                    $sdswasta = $item['sdswasta'][0] ?? null;
-                    if ($sdswasta) {
-                        return $sdswasta['jk_lk'];
-                    }
-                    return null;
+                    // $sdswasta = $item['sdswasta'][0] ?? null;
+                    // if ($sdswasta) {
+                    //     return $sdswasta['jk_lk'];
+                    // }
+                    // return null;
                 })
 
-                ->addColumn('jk_p', function ($item) {
+                ->addColumn('jk_pr', function ($item) {
                     /**
                      * Menghitung jumlah item dengan flag 'P' pada baris tabel,
                      * dan mengembalikan jumlah tersebut.
                      */
-                    $sdswasta = $item['sdswasta'][0] ?? null;
-                    if ($sdswasta) {
-                        return $sdswasta['jk_pr'];
-                    }
-                    return null;
+
+                     return $item->jk_pr;
+                    // $sdswasta = $item['sdswasta'][0] ?? null;
+                    // if ($sdswasta) {
+                    //     return $sdswasta['jk_pr'];
+                    // }
+                    // return null;
                 })
 
                 ->addColumn('sum', function ($item) {
@@ -76,12 +83,13 @@ class UsiasekolahController extends Controller
                     // $sum = $item->sumjk;
                     // Mengembalikan jumlah tersebut.
                     // return $sum;
-                    $sdswasta = $item['sdswasta'][0] ?? null;
-                    if ($sdswasta) {
-                        $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
-                        return $sum;
-                    }
-                    return null;
+                    // $sdswasta = $item['sdswasta'][0] ?? null;
+                    // if ($sdswasta) {
+                    //     $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
+                    //     return $sum;
+                    // }
+                    $sum = $item->jk_lk + $item->jk_pr;
+                    return $sum;
                 })
                 ->addColumn('pr_l', function ($item) {
                     /**
@@ -89,13 +97,17 @@ class UsiasekolahController extends Controller
                      * dan mengembalikan persentase tersebut dalam bentuk string dengan 2 angka desimal.
                      */
                     // return number_format(($item->countjkswasta('L') / $item->sum) * 100, 2);
-                    $sdswasta = $item['sdswasta'][0] ?? null;
-                    if ($sdswasta) {
-                        $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
-                        $percentage = number_format($sdswasta['jk_lk'] / $sum * 100, 2);
+                    // $sdswasta = $item['sdswasta'][0] ?? null;
+                    // if ($sdswasta) {
+                    //     $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
+                    //     $percentage = number_format($sdswasta['jk_lk'] / $sum * 100, 2);
+                    //     return $percentage;
+                    // }
+                    // return null;
+                        $sum = $item->jk_lk + $item->jk_pr;
+                        $percentage = number_format($item->jk_lk / $sum * 100, 2);
                         return $percentage;
-                    }
-                    return null;
+                    
                 })
 
                 ->addColumn('pr_p', function ($item) {
@@ -104,13 +116,16 @@ class UsiasekolahController extends Controller
                      * dan mengembalikan persentase tersebut dalam bentuk string dengan 2 angka desimal.
                      */
                     // return number_format(($item->countjkswasta('P') / $item->sum) * 100, 2);
-                    $sdswasta = $item['sdswasta'][0] ?? null;
-                    if ($sdswasta) {
-                        $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
-                        $percentage = number_format($sdswasta['jk_pr'] / $sum * 100, 2);
+                    // $sdswasta = $item['sdswasta'][0] ?? null;
+                    // if ($sdswasta) {
+                    //     $sum = $sdswasta['jk_lk'] + $sdswasta['jk_pr'];
+                    //     $percentage = number_format($sdswasta['jk_pr'] / $sum * 100, 2);
+                    //     return $percentage;
+                    // }
+                    // return null;
+                        $sum = $item->jk_lk + $item->jk_pr;
+                        $percentage = number_format($item->jk_pr / $sum * 100, 2);
                         return $percentage;
-                    }
-                    return null;
                 })
 
                 // Menambahkan kolom 'actions'
