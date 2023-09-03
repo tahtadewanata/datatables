@@ -6,6 +6,9 @@ use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Models\Opd;
 use Yajra\DataTables\DataTables;
+use App\Models\Sdswasta;
+use Illuminate\Support\Facades\DB;
+
 
 class LandingController extends Controller
 {
@@ -132,28 +135,47 @@ class LandingController extends Controller
 
     public function getChartLanding(Request $request)
     {
-        $data = Kecamatan::with('siswa')
-            ->when($request->has('tahun'), function ($kec) use ($request) {
-                // Jika parameter 'tahun' diberikan pada request, maka hanya data kecamatan dengan tahun tersebut yang diambil.
-                $kec->where('tahun', $request->tahun);
-            })->get();
+        // $data = Kecamatan::with('Sdswasta')
+        //     ->when($request->has('tahun'), function ($kec) use ($request) {
+        //         // Jika parameter 'tahun' diberikan pada request, maka hanya data kecamatan dengan tahun tersebut yang diambil.
+        //         $kec->whereYear('tahun', $request->tahun);
+        //     })->get();
+        // $data = Sdswasta::with(['Kecamatan' => function ($query) use ($request) {
+        //         // If the 'tahun' parameter is provided in the request, filter the related Sdswasta records.
+        //         if ($request->has('tahun')) {
+        //             $query->whereYear('tahun', $request->tahun);
+        //         }
+        //     }])->get();
+        // $data = Sdswasta::with(['Kecamatan' => function ($query) use ($request) {
+        //         // If the 'tahun' parameter is provided in the request, filter the related Sdswasta records.
+        //         if ($request->has('tahun')) {
+        //             $query->whereYear('tahun', $request->tahun);
+        //         }
+        //     }])
+        //     ->select('sdswasta.*', 'kecamatan.nama_kecamatan')
+        //     ->get();
+        $data = DB::table('sdswasta')
+    ->join('kecamatan', 'sdswasta.kecamatan_id', '=', 'kecamatan.id')
+    ->select('sdswasta.*', 'kecamatan.nama_kecamatan');
 
-        if (!$request->filled('tahun')) {
+            if (!$request->filled('tahun')) {
 
             // Jika parameter 'tahun' tidak diberikan pada request, maka ambil semua data kecamatan.
-            $data = Kecamatan::with('siswa')->get();
+            $data = Sdswasta::with('Kecamatan')->get();
         }
-
-        $labels = $data->pluck('nama_kecamatan');
-        $lakiData = $data->pluck('siswa')->map(function ($siswa) {
+        $labels = $data->pluck('kecamatan.nama_kecamatan');
+        $lakiData = $data->pluck('sdswasta')->map(function ($siswa) {
 
             // Menghitung jumlah siswa laki-laki pada setiap kecamatan.
-            return $siswa->where('jk', 'L')->count();
+            return $siswa->jk_lk;
+            // return $item->jk_lk
+            // return 4;
         });
         $perempuanData = $data->pluck('siswa')->map(function ($siswa) {
 
             // Menghitung jumlah siswa perempuan pada setiap kecamatan.
-            return $siswa->where('jk', 'P')->count();
+            // return $siswa->where('jk', 'P')->count();
+            return 3;
         });
 
         return response()->json([
@@ -176,42 +198,29 @@ class LandingController extends Controller
     }
 
     public function getChartLanding2(Request $request)
-    {
-        $query = Kecamatan::query(); // Start with a base query
+{
+    $query = Sdswasta::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
 
-        if ($request->has('tahun')) {
-            // If 'tahun' parameter is provided, filter by it
-            $query->whereHas('sdswasta', function ($sdswasta) use ($request) {
-                $sdswasta->where('tahun', $request->tahun);
-            });
-        }
-
-        $data = Kecamatan::with('sdswasta')->get();
-        $labels = $data->pluck('nama_kecamatan');
-        print_r($labels);
-
-        $lakiData = $data->pluck('sdswasta')->map(function ($sdswasta) {
-            if ($sdswasta) {
-                return $sdswasta[0]['jk_lk'] ?? null;
-            }
-            return null;
-        });
-        $perempuanData = $data->pluck('sdswasta')->map(function ($sdswasta) {
-            if ($sdswasta) {
-                return $sdswasta[0]['jk_pr'] ?? null;
-            }
-            return null;
-        });
-
-
-        return response()->json([
-            'labels' => $labels,
-            'data' => [
-                'laki' => $lakiData,
-                'perempuan' => $perempuanData
-            ]
-        ]);
+    if ($request->filled('tahun')) {
+        // If 'tahun' parameter is provided, filter by it
+        $query->whereYear('tahun', $request->tahun);
     }
+
+    $data = $query->get();
+
+    $labels = $data->pluck('kecamatan.nama_kecamatan');
+    $lakiData = $data->pluck('jk_lk');
+    $perempuanData = $data->pluck('jk_pr');
+
+    return response()->json([
+        'labels' => $labels,
+        'data' => [
+            'laki' => $lakiData,
+            'perempuan' => $perempuanData
+        ]
+    ]);
+}
+
 
     /**
      * Show the form for creating a new resource.

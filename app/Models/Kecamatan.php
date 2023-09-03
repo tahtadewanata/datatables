@@ -17,11 +17,11 @@ class Kecamatan extends Model
         return $this->hasMany(DataSiswa::class, 'kecamatan_id');
     }
 
-    public function sdswasta()
+    public function Sdswasta()
     {
-        return $this->hasMany(Sdswasta::class, 'kecamatan_id');
+    return $this->hasMany(Sdswasta::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
     }
-
+    
     public function countjk($jk)
     {
         return $this->siswa?->where('jk', $jk)->count();
