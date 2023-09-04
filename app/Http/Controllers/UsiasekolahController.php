@@ -105,7 +105,12 @@ class UsiasekolahController extends Controller
                     // }
                     // return null;
                         $sum = $item->jk_lk + $item->jk_pr;
-                        $percentage = number_format($item->jk_lk / $sum * 100, 2);
+                        // $percentage = number_format($item->jk_lk / $sum * 100, 2);
+                        $percentage = number_format(
+                            $sum == 0
+                                ? 0
+                                : $item->jk_lk * 100 / $sum, 2
+                        );
                         return $percentage;
                     
                 })
@@ -124,7 +129,11 @@ class UsiasekolahController extends Controller
                     // }
                     // return null;
                         $sum = $item->jk_lk + $item->jk_pr;
-                        $percentage = number_format($item->jk_pr / $sum * 100, 2);
+                        $percentage = number_format(
+                            $sum == 0
+                                ? 0
+                                : $item->jk_pr * 100 / $sum, 2
+                        );
                         return $percentage;
                 })
 
