@@ -144,16 +144,18 @@
                                     <div class="form-group">
                                         <div class="d-block">
                                             <label for="password" class="control-label">Password</label>
-                                            <div class="float-right">
-                                                <a href="auth-forgot-password.html" class="text-small">
-                                                    Forgot Password?
-                                                </a>
+                                            <div class="input-group">
+                                                <input id="password" type="password" class="form-control" name="password"
+                                                    tabindex="2" required>
+                                                <div class="input-group-append">
+                                                    <button type="button" id="togglePassword" class="btn btn-secondary">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2" required>
-                                        <div class="invalid-feedback">
-                                            please fill in your password
+                                            <div class="invalid-feedback">
+                                                please fill in your password
+                                            </div>
                                         </div>
                                     </div>
 
@@ -218,6 +220,20 @@
     <!-- Template JS File -->
     <script src="../../admin/js/scripts.js"></script>
     <script src="../../admin/js/custom.js"></script>
+    <script>
+        const togglePasswordButton = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePasswordButton.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePasswordButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = 'password';
+                togglePasswordButton.innerHTML = '<i class="fa fa-eye"></i>';
+            }
+        });
+    </script>
 </body>
 
 </html>

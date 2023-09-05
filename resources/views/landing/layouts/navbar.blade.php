@@ -13,8 +13,16 @@
                 <li class="nav-item @@contact">
                     <a class="nav-link" href="{{ route('getdasar') }}">Data Dasar</a>
                 </li>
-                <li class="nav-item @@contact">
-                    <a class="nav-link" href="{{ route('chartTable') }}">Data Terpilah</a>
+                <li class="nav-item dropdown @@contact">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Data Terpilah
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('chartTable') }}">Data Penduduk Usia Sekolah</a>
+                        <a class="dropdown-item" href="#">Siswa Putus Sekolah</a>
+                        <a class="dropdown-item" href="#">Angka Partisipasi Sekolah</a>
+                        <!-- Tambahkan submenu lainnya sesuai kebutuhan -->
+                    </div>
                 </li>
                 <li class="nav-item @@contact">
                     @auth
