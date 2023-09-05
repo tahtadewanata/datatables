@@ -22,6 +22,11 @@ class Kecamatan extends Model
     return $this->hasMany(Sdswasta::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
     }
     
+    public function Sdnegeri()
+    {
+    return $this->hasMany(Sdnegeri::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
+    }
+
     public function countjk($jk)
     {
         return $this->siswa?->where('jk', $jk)->count();

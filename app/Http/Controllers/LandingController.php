@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Opd;
 use Yajra\DataTables\DataTables;
 use App\Models\Sdswasta;
+use App\Models\Sdnegeri;
 use Illuminate\Support\Facades\DB;
 
 
@@ -197,7 +198,7 @@ class LandingController extends Controller
         ]);
     }
 
-    public function getChartLanding2(Request $request)
+    public function getChartSdswasta(Request $request)
     {
         $query = Sdswasta::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
 
@@ -208,7 +209,7 @@ class LandingController extends Controller
 
         $data = $query->get();
 
-        $labels = $data->pluck('nama_kecamatan');
+        $labels = $data->pluck('kecamatan.nama_kecamatan');
         $lakiData = $data->pluck('jk_lk');
         $perempuanData = $data->pluck('jk_pr');
 
@@ -221,7 +222,29 @@ class LandingController extends Controller
         ]);
     }
 
+    public function getChartSdnegeri(Request $request)
+    {
+        $query = Sdnegeri::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
 
+        if ($request->filled('tahun')) {
+            // If 'tahun' parameter is provided, filter by it
+            $query->where('tahun', $request->tahun);
+        }
+
+        $data = $query->get();
+
+        $labels = $data->pluck('kecamatan.nama_kecamatan');
+        $lakiData = $data->pluck('jk_lk');
+        $perempuanData = $data->pluck('jk_pr');
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'lanang' => $lakiData,
+                'perempuan' => $perempuanData
+            ]
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *

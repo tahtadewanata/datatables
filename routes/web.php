@@ -77,8 +77,13 @@ Route::get('/test-sum', function () {
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
 Route::get('/pendudukusiasekolah', [LandingController::class, 'chartTable'])->name('chartTable');
+
+
+//Data Penduduk Usia Sekolah
 Route::get('/sdswasta', [UsiasekolahController::class, 'getsdswasta'])->name('getsdswasta');
-Route::get('/get-chart-table', [LandingController::class, 'getChartLanding2'])->name('getChartTable');
+Route::get('/get-chart-table', [LandingController::class, 'getChartSdswasta'])->name('getchartsdswasta');
+Route::get('/sdnegeri', [UsiasekolahController::class, 'getsdnegeri'])->name('getsdnegeri');
+Route::get('/get-chart-sdnegeri', [LandingController::class, 'getChartSdnegeri'])->name('getChartSdnegeri');
 
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');

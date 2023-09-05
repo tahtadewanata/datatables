@@ -74,7 +74,7 @@
                 processing: true,
                 serverSide: true,               
                 ajax: {
-                url: '{{ route('getsdswasta') }}',
+                url: '{{ route('getsdnegeri') }}',
                 
                 type: "GET",
                 dataType: "JSON",
@@ -133,7 +133,7 @@
                 let tahun = $(this).val();
 
                 // Membentuk URL dengan menambahkan parameter tahun
-                let urls = '{!! route('getsdswasta') !!}' + '?tahun=' + tahun;
+                let urls = '{!! route('getsdnegeri') !!}' + '?tahun=' + tahun;
 
                 // Memperbarui URL sumber data DataTable dan memuat ulang data
                 myTable.ajax.url(urls).load();
@@ -160,7 +160,7 @@
                 let selectedYear = $('#exampleFormControlSelect1').val();
 
                 $.ajax({
-                    url: "{{ route('getchartsdswasta') }}",
+                    url: "{{ route('getChartSdnegeri') }}",
                     type: "GET",
                     data: {
                         tahun: selectedYear
@@ -179,7 +179,7 @@
                                 labels: response.labels,
                                 datasets: [{
                                     label: 'Laki-laki',
-                                    data: response.data.laki,
+                                    data: response.data.lanang,
                                     borderWidth: 2,
                                     backgroundColor: '#6777ef',
                                     borderColor: '#6777ef',
