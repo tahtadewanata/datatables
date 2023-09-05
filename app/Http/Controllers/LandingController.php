@@ -155,10 +155,10 @@ class LandingController extends Controller
         //     ->select('sdswasta.*', 'kecamatan.nama_kecamatan')
         //     ->get();
         $data = DB::table('sdswasta')
-    ->join('kecamatan', 'sdswasta.kecamatan_id', '=', 'kecamatan.id')
-    ->select('sdswasta.*', 'kecamatan.nama_kecamatan');
+            ->join('kecamatan', 'sdswasta.kecamatan_id', '=', 'kecamatan.id')
+            ->select('sdswasta.*', 'kecamatan.nama_kecamatan');
 
-            if (!$request->filled('tahun')) {
+        if (!$request->filled('tahun')) {
 
             // Jika parameter 'tahun' tidak diberikan pada request, maka ambil semua data kecamatan.
             $data = Sdswasta::with('Kecamatan')->get();
@@ -167,9 +167,9 @@ class LandingController extends Controller
         $lakiData = $data->pluck('sdswasta')->map(function ($siswa) {
 
             // Menghitung jumlah siswa laki-laki pada setiap kecamatan.
-            return $siswa->jk_lk;
+            // return $siswa->jk_lk;
             // return $item->jk_lk
-            // return 4;
+            return 4;
         });
         $perempuanData = $data->pluck('siswa')->map(function ($siswa) {
 
@@ -198,28 +198,28 @@ class LandingController extends Controller
     }
 
     public function getChartLanding2(Request $request)
-{
-    $query = Sdswasta::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
+    {
+        $query = Sdswasta::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
 
-    if ($request->filled('tahun')) {
-        // If 'tahun' parameter is provided, filter by it
-        $query->whereYear('tahun', $request->tahun);
+        if ($request->filled('tahun')) {
+            // If 'tahun' parameter is provided, filter by it
+            $query->where('tahun', $request->tahun);
+        }
+
+        $data = $query->get();
+
+        $labels = $data->pluck('nama_kecamatan');
+        $lakiData = $data->pluck('jk_lk');
+        $perempuanData = $data->pluck('jk_pr');
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'laki' => $lakiData,
+                'perempuan' => $perempuanData
+            ]
+        ]);
     }
-
-    $data = $query->get();
-
-    $labels = $data->pluck('kecamatan.nama_kecamatan');
-    $lakiData = $data->pluck('jk_lk');
-    $perempuanData = $data->pluck('jk_pr');
-
-    return response()->json([
-        'labels' => $labels,
-        'data' => [
-            'laki' => $lakiData,
-            'perempuan' => $perempuanData
-        ]
-    ]);
-}
 
 
     /**

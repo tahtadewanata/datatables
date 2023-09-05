@@ -30,7 +30,7 @@ class UsiasekolahController extends Controller
 
         $data = Sdswasta::when($request->has('tahun'), function ($kec) use ($request) {
             // Ketika parameter 'tahun' ada dalam permintaan, melakukan filtering berdasarkan tahun
-            $kec->whereYear('tahun', $request->tahun)->get();
+            $kec->where('tahun', $request->tahun)->get();
             // $kec->where('tahun', $request->tahun);
         });
 
@@ -69,7 +69,7 @@ class UsiasekolahController extends Controller
                      * dan mengembalikan jumlah tersebut.
                      */
 
-                     return $item->jk_pr;
+                    return $item->jk_pr;
                     // $sdswasta = $item['sdswasta'][0] ?? null;
                     // if ($sdswasta) {
                     //     return $sdswasta['jk_pr'];
@@ -104,15 +104,15 @@ class UsiasekolahController extends Controller
                     //     return $percentage;
                     // }
                     // return null;
-                        $sum = $item->jk_lk + $item->jk_pr;
-                        // $percentage = number_format($item->jk_lk / $sum * 100, 2);
-                        $percentage = number_format(
-                            $sum == 0
-                                ? 0
-                                : $item->jk_lk * 100 / $sum, 2
-                        );
-                        return $percentage;
-                    
+                    $sum = $item->jk_lk + $item->jk_pr;
+                    // $percentage = number_format($item->jk_lk / $sum * 100, 2);
+                    $percentage = number_format(
+                        $sum == 0
+                            ? 0
+                            : $item->jk_lk * 100 / $sum,
+                        2
+                    );
+                    return $percentage;
                 })
 
                 ->addColumn('pr_p', function ($item) {
@@ -128,13 +128,14 @@ class UsiasekolahController extends Controller
                     //     return $percentage;
                     // }
                     // return null;
-                        $sum = $item->jk_lk + $item->jk_pr;
-                        $percentage = number_format(
-                            $sum == 0
-                                ? 0
-                                : $item->jk_pr * 100 / $sum, 2
-                        );
-                        return $percentage;
+                    $sum = $item->jk_lk + $item->jk_pr;
+                    $percentage = number_format(
+                        $sum == 0
+                            ? 0
+                            : $item->jk_pr * 100 / $sum,
+                        2
+                    );
+                    return $percentage;
                 })
 
                 // Menambahkan kolom 'actions'
