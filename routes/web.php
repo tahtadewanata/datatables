@@ -76,12 +76,13 @@ Route::get('/test-sum', function () {
 });
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
-Route::get('/pendudukusiasekolah', [LandingController::class, 'chartTable'])->name('chartTable');
-
+Route::get('/teschart', [LandingController::class, 'chartTable'])->name('chartTable');
+Route::get('/get-chart-table', [LandingController::class, 'getChartLanding'])->name('getChartTable');
 
 //Data Penduduk Usia Sekolah
+Route::get('/bidang-pendidikan', [LandingController::class, 'bidpendidikan'])->name('getPendidikantable');
 Route::get('/sdswasta', [UsiasekolahController::class, 'getsdswasta'])->name('getsdswasta');
-Route::get('/get-chart-table', [LandingController::class, 'getChartSdswasta'])->name('getchartsdswasta');
+Route::get('/get-chart-sdswasta', [LandingController::class, 'getChartSdswasta'])->name('getchartsdswasta');
 Route::get('/sdnegeri', [UsiasekolahController::class, 'getsdnegeri'])->name('getsdnegeri');
 Route::get('/get-chart-sdnegeri', [LandingController::class, 'getChartSdnegeri'])->name('getChartSdnegeri');
 

@@ -13,8 +13,8 @@ class Dataklasifikasi extends Model
 
     protected $fillable = [
         'namadata',
-        'klasifikasi',
-        'bidang'
+        'id_klasifikasi',
+        'id_bidang'
     ];
 
     public function klasifikasi()

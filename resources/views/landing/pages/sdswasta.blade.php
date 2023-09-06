@@ -202,6 +202,15 @@
                                             beginAtZero: false,
                                             stepSize: 500
                                         }
+                                    }],
+                                    xAxes: [{
+                                    ticks: {
+                                        maxRotation: 50,
+                                        minRotation: 30,
+                                        padding: 10,
+                                        autoSkip: false,
+                                        fontSize: 10
+                                    }
                                     }]
                                 }
                             }

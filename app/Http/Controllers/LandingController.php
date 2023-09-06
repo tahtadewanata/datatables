@@ -8,6 +8,7 @@ use App\Models\Opd;
 use Yajra\DataTables\DataTables;
 use App\Models\Sdswasta;
 use App\Models\Sdnegeri;
+use App\Models\Dataklasifikasi;
 use Illuminate\Support\Facades\DB;
 
 
@@ -134,49 +135,76 @@ class LandingController extends Controller
         return view('landing.pages.chart_table', $judul);
     }
 
+    public function bidpendidikan(Request $request)
+    {
+        //
+        $judul = [
+            'title' => 'Bidang Pendidikan',
+        ];
+
+        $data = DataKlasifikasi::with(['bidang', 'klasifikasi'])
+            ->where('id_bidang', '=', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        if ($request->ajax()) {
+            // Jika permintaan adalah permintaan AJAX
+            // Maka akan return DataTable
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('nama_tabel', function ($item) {
+                    // Mengembalikan nama kecamatan pada baris tabel.
+                    return $item->namadata;
+                })
+                // ->addColumn('bidang_nama', function ($item) {
+                //     // Mengembalikan nama bidang pada baris tabel.
+                //     return $item->bidang->namabidang;
+                // })
+                // ->addColumn('klasifikasi_nama', function ($item) {
+                //     // Mengembalikan nama klasifikasi pada baris tabel.
+                //     return $item->klasifikasi->namaklasifikasi;
+                // })
+                ->addColumn('actions', function () {
+                    return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
+                })
+                // ->addColumn('actions', function ($item) {
+                //     // Tambahkan kolom aksi sesuai kebutuhan.
+                //     $actions = '<button class="btn btn-info">Edit</button>';
+                //     $actions .= '<button class="btn btn-danger">Delete</button>';
+                //     // Tambahkan tombol-tombol aksi lainnya di sini.
+
+                //     return $actions;
+                // })
+                ->rawColumns(['actions']) // Jika kolom 'action' memuat HTML.
+                ->make(true);
+        }
+
+        return view('landing.pages.bid_pendidikan', $judul);
+    }
     public function getChartLanding(Request $request)
     {
-        // $data = Kecamatan::with('Sdswasta')
-        //     ->when($request->has('tahun'), function ($kec) use ($request) {
-        //         // Jika parameter 'tahun' diberikan pada request, maka hanya data kecamatan dengan tahun tersebut yang diambil.
-        //         $kec->whereYear('tahun', $request->tahun);
-        //     })->get();
-        // $data = Sdswasta::with(['Kecamatan' => function ($query) use ($request) {
-        //         // If the 'tahun' parameter is provided in the request, filter the related Sdswasta records.
-        //         if ($request->has('tahun')) {
-        //             $query->whereYear('tahun', $request->tahun);
-        //         }
-        //     }])->get();
-        // $data = Sdswasta::with(['Kecamatan' => function ($query) use ($request) {
-        //         // If the 'tahun' parameter is provided in the request, filter the related Sdswasta records.
-        //         if ($request->has('tahun')) {
-        //             $query->whereYear('tahun', $request->tahun);
-        //         }
-        //     }])
-        //     ->select('sdswasta.*', 'kecamatan.nama_kecamatan')
-        //     ->get();
-        $data = DB::table('sdswasta')
-            ->join('kecamatan', 'sdswasta.kecamatan_id', '=', 'kecamatan.id')
-            ->select('sdswasta.*', 'kecamatan.nama_kecamatan');
+        $data = Kecamatan::with('siswa')
+            ->when($request->has('tahun'), function ($kec) use ($request) {
+                // Jika parameter 'tahun' diberikan pada request, maka hanya data kecamatan dengan tahun tersebut yang diambil.
+                $kec->where('tahun', $request->tahun);
+            })->get();
 
         if (!$request->filled('tahun')) {
 
             // Jika parameter 'tahun' tidak diberikan pada request, maka ambil semua data kecamatan.
-            $data = Sdswasta::with('Kecamatan')->get();
+            $data = Kecamatan::with('siswa')->get();
         }
-        $labels = $data->pluck('kecamatan.nama_kecamatan');
-        $lakiData = $data->pluck('sdswasta')->map(function ($siswa) {
+
+        $labels = $data->pluck('nama_kecamatan');
+        $lakiData = $data->pluck('siswa')->map(function ($siswa) {
 
             // Menghitung jumlah siswa laki-laki pada setiap kecamatan.
-            // return $siswa->jk_lk;
-            // return $item->jk_lk
-            return 4;
+            return $siswa->where('jk', 'L')->count();
         });
         $perempuanData = $data->pluck('siswa')->map(function ($siswa) {
 
             // Menghitung jumlah siswa perempuan pada setiap kecamatan.
-            // return $siswa->where('jk', 'P')->count();
-            return 3;
+            return $siswa->where('jk', 'P')->count();
         });
 
         return response()->json([
