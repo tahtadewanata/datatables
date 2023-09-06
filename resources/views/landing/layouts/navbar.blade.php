@@ -18,7 +18,7 @@
                         Data Terpilah
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('chartTable') }}">Data Penduduk Usia Sekolah</a>
+                        <a class="dropdown-item" href="{{ route('getPendidikantable') }}">Bid. Pendidikan</a>
                         <a class="dropdown-item" href="#">Siswa Putus Sekolah</a>
                         <a class="dropdown-item" href="#">Angka Partisipasi Sekolah</a>
                         <!-- Tambahkan submenu lainnya sesuai kebutuhan -->
