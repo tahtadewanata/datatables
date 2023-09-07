@@ -166,25 +166,25 @@ class LandingController extends Controller
                 // })
                 ->addColumn('actions', function ($item) {
                     $condition = $item->namadata;
-                
+
                     // Define the route names based on your actual route names
                     $routeName = '';
-                
+
                     // Set the appropriate route name based on the condition (use your own logic here)
                     switch ($condition) {
-                        case 'DATA PENDUDUK USIA SEKOLAH':
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SD SWASTA':
                             $routeName = 'getsdswasta';
                             break;
-                        case 'SISWA PUTUS SEKOLAH':
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SD NEGERI':
                             $routeName = 'getsdnegeri';
                             break;
-                        // Add more cases for your other route conditions
+                            // Add more cases for your other route conditions
                         default:
                             $routeName = 'home.index'; // A fallback route in case none of the conditions match
                     }
-                
+
                     $route = route($routeName);
-                
+
                     return '<td><a href="' . $route . '" class="btn btn-secondary">Detail</a></td>';
                 })
                 // ->addColumn('actions', function ($item) {
