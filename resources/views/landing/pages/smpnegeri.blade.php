@@ -37,7 +37,7 @@
                                 <tr>
                                     <th rowspan="2">No</th>
                                     <th rowspan="2">Kecamatan</th>
-                                    <th colspan="2">Jenis Kelamin SD Negeri</th>
+                                    <th colspan="2">Jenis Kelamin SMP Negeri</th>
                                     <th rowspan="2">Jumlah</th>
                                     <th colspan="2">Persentase</th>
                                     <th rowspan="2" width="15%">Actions</th>
@@ -74,7 +74,7 @@
                 processing: true,
                 serverSide: true,               
                 ajax: {
-                url: '{{ route('getsdnegeri') }}',
+                url: '{{ route('getsmpnegeri') }}',
                 
                 type: "GET",
                 dataType: "JSON",
@@ -133,7 +133,7 @@
                 let tahun = $(this).val();
 
                 // Membentuk URL dengan menambahkan parameter tahun
-                let urls = '{!! route('getsdnegeri') !!}' + '?tahun=' + tahun;
+                let urls = '{!! route('getsmpnegeri') !!}' + '?tahun=' + tahun;
 
                 // Memperbarui URL sumber data DataTable dan memuat ulang data
                 myTable.ajax.url(urls).load();
@@ -160,7 +160,7 @@
                 let selectedYear = $('#exampleFormControlSelect1').val();
 
                 $.ajax({
-                    url: "{{ route('getChartSdnegeri') }}",
+                    url: "{{ route('getChartSmpnegeri') }}",
                     type: "GET",
                     data: {
                         tahun: selectedYear
@@ -174,7 +174,7 @@
                         // Ini adalah package dari chart.js, untuk dokumentasi lihat https://www.chartjs.org/docs/latest/
                         let ctx = document.getElementById("myChart2").getContext('2d');
                         myChart = new Chart(ctx, {
-                            type: 'line',
+                            type: 'bar',
                             data: {
                                 labels: response.labels,
                                 datasets: [{
@@ -225,7 +225,7 @@
             }
 
         function downloadImage() {
-            myChart.options.title.text = 'New Chart Title';
+            myChart.options.title.text = 'Judul Chart';
             myChart.update({
                 duration: 0
             });

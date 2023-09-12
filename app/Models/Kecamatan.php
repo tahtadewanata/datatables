@@ -19,12 +19,17 @@ class Kecamatan extends Model
 
     public function Sdswasta()
     {
-    return $this->hasMany(Sdswasta::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
+        return $this->hasMany(Sdswasta::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
     }
-    
+
     public function Sdnegeri()
     {
-    return $this->hasMany(Sdnegeri::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
+        return $this->hasMany(Sdnegeri::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
+    }
+
+    public function Smpnegeri()
+    {
+        return $this->hasMany(Smpnegeri::class, 'kecamatan_id'); // Assuming 'kecamatan_id' is the foreign key column.
     }
 
     public function countjk($jk)
@@ -32,7 +37,7 @@ class Kecamatan extends Model
         return $this->siswa?->where('jk', $jk)->count();
     }
 
-    public function sumjk()
+    public function sumjk($jk)
     {
         return $this->sdswasta?->groupBy('kecamatan.id')->sum($jk);
         // return ($this->sdswasta?->where('jk', 'Laki')->count() +  $this->sdswasta?->where('jk', 'Perempuan')->sum());

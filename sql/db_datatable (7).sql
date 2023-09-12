@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 07, 2023 at 09:09 AM
+-- Generation Time: Sep 12, 2023 at 03:35 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -622,6 +622,74 @@ CREATE TABLE `smpnegeri` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `smpnegeri`
+--
+
+INSERT INTO `smpnegeri` (`id`, `kecamatan_id`, `jk_lk`, `jk_pr`, `tahun`, `created_at`, `updated_at`) VALUES
+(1, 1, 525, 569, 2021, NULL, NULL),
+(2, 2, 576, 625, 2021, NULL, NULL),
+(3, 3, 589, 638, 2021, NULL, NULL),
+(4, 4, 709, 768, 2021, NULL, NULL),
+(5, 5, 228, 248, 2021, NULL, NULL),
+(6, 6, 1619, 1754, 2021, NULL, NULL),
+(7, 7, 495, 537, 2021, NULL, NULL),
+(8, 8, 597, 647, 2021, NULL, NULL),
+(9, 9, 2837, 3037, 2021, NULL, NULL),
+(10, 10, 316, 343, 2021, NULL, NULL),
+(11, 11, 154, 167, 2021, NULL, NULL),
+(12, 12, 732, 792, 2021, NULL, NULL),
+(13, 13, 804, 871, 2021, NULL, NULL),
+(14, 14, 542, 588, 2021, NULL, NULL),
+(15, 15, 822, 890, 2021, NULL, NULL),
+(16, 16, 911, 987, 2021, NULL, NULL),
+(17, 17, 399, 433, 2021, NULL, NULL),
+(18, 18, 409, 444, 2021, NULL, NULL),
+(19, 19, 1166, 1264, 2021, NULL, NULL),
+(20, 20, 345, 373, 2021, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `smpswasta`
+--
+
+CREATE TABLE `smpswasta` (
+  `id` bigint UNSIGNED NOT NULL,
+  `kecamatan_id` tinyint UNSIGNED NOT NULL,
+  `jk_lk` int DEFAULT NULL,
+  `jk_pr` int DEFAULT NULL,
+  `tahun` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `smpswasta`
+--
+
+INSERT INTO `smpswasta` (`id`, `kecamatan_id`, `jk_lk`, `jk_pr`, `tahun`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, 0, 2021, NULL, NULL),
+(2, 2, 232, 252, 2021, NULL, NULL),
+(3, 3, 56, 61, 2021, NULL, NULL),
+(4, 4, 61, 66, 2021, NULL, NULL),
+(5, 5, 0, 0, 2021, NULL, NULL),
+(6, 6, 121, 132, 2021, NULL, NULL),
+(7, 7, 0, 0, 2021, NULL, NULL),
+(8, 8, 645, 699, 2021, NULL, NULL),
+(9, 9, 296, 231, 2021, NULL, NULL),
+(10, 10, 0, 0, 2021, NULL, NULL),
+(11, 11, 0, 0, 2021, NULL, NULL),
+(12, 12, 40, 43, 2021, NULL, NULL),
+(13, 13, 12, 14, 2021, NULL, NULL),
+(14, 14, 59, 64, 2021, NULL, NULL),
+(15, 15, 134, 146, 2021, NULL, NULL),
+(16, 16, 0, 0, 2021, NULL, NULL),
+(17, 17, 55, 59, 2021, NULL, NULL),
+(18, 18, 11, 12, 2021, NULL, NULL),
+(19, 19, 385, 417, 2021, NULL, NULL),
+(20, 20, 0, 0, 2021, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -832,7 +900,7 @@ ALTER TABLE `sdswasta`
 -- AUTO_INCREMENT for table `smpnegeri`
 --
 ALTER TABLE `smpnegeri`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbberita`

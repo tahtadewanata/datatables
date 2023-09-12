@@ -9,6 +9,8 @@ use Yajra\DataTables\DataTables;
 use App\Models\Sdswasta;
 use App\Models\Sdnegeri;
 use App\Models\Dataklasifikasi;
+use App\Models\Smpnegeri;
+use App\Models\Smpswasta;
 use Illuminate\Support\Facades\DB;
 
 
@@ -178,6 +180,12 @@ class LandingController extends Controller
                         case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SD NEGERI':
                             $routeName = 'getsdnegeri';
                             break;
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SMP NEGERI':
+                            $routeName = 'getsmpnegeri';
+                            break;
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SMP SWASTA':
+                            $routeName = 'getsmpswasta';
+                            break;
                             // Add more cases for your other route conditions
                         default:
                             $routeName = 'home.index'; // A fallback route in case none of the conditions match
@@ -273,6 +281,54 @@ class LandingController extends Controller
     public function getChartSdnegeri(Request $request)
     {
         $query = Sdnegeri::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
+
+        if ($request->filled('tahun')) {
+            // If 'tahun' parameter is provided, filter by it
+            $query->where('tahun', $request->tahun);
+        }
+
+        $data = $query->get();
+
+        $labels = $data->pluck('kecamatan.nama_kecamatan');
+        $lakiData = $data->pluck('jk_lk');
+        $perempuanData = $data->pluck('jk_pr');
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'lanang' => $lakiData,
+                'perempuan' => $perempuanData
+            ]
+        ]);
+    }
+
+    public function getChartSmpnegeri(Request $request)
+    {
+        $query = Smpnegeri::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
+
+        if ($request->filled('tahun')) {
+            // If 'tahun' parameter is provided, filter by it
+            $query->where('tahun', $request->tahun);
+        }
+
+        $data = $query->get();
+
+        $labels = $data->pluck('kecamatan.nama_kecamatan');
+        $lakiData = $data->pluck('jk_lk');
+        $perempuanData = $data->pluck('jk_pr');
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'lanang' => $lakiData,
+                'perempuan' => $perempuanData
+            ]
+        ]);
+    }
+
+    public function getChartSmpswasta(Request $request)
+    {
+        $query = Smpswasta::query()->with('kecamatan'); // Start with a base query and eager load 'kecamatan'
 
         if ($request->filled('tahun')) {
             // If 'tahun' parameter is provided, filter by it

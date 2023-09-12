@@ -85,8 +85,10 @@ Route::get('/sdswasta', [UsiasekolahController::class, 'getsdswasta'])->name('ge
 Route::get('/get-chart-sdswasta', [LandingController::class, 'getChartSdswasta'])->name('getchartsdswasta');
 Route::get('/sdnegeri', [UsiasekolahController::class, 'getsdnegeri'])->name('getsdnegeri');
 Route::get('/get-chart-sdnegeri', [LandingController::class, 'getChartSdnegeri'])->name('getChartSdnegeri');
-Route::get('/smpswasta', [UsiasekolahController::class, 'getsmpnegeri'])->name('getsmpnegeri');
+Route::get('/smpnegeri', [UsiasekolahController::class, 'getsmpnegeri'])->name('getsmpnegeri');
 Route::get('/get-chart-smpnegeri', [LandingController::class, 'getChartSmpnegeri'])->name('getChartSmpnegeri');
+Route::get('/smpswasta', [UsiasekolahController::class, 'getsmpswasta'])->name('getsmpswasta');
+Route::get('/get-chart-smpswasta', [LandingController::class, 'getChartSmpswasta'])->name('getChartSmpswasta');
 
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
