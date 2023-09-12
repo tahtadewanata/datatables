@@ -11,6 +11,7 @@ use App\Models\Sdnegeri;
 use App\Models\Dataklasifikasi;
 use App\Models\Smpnegeri;
 use App\Models\Smpswasta;
+use App\Models\apk;
 use Illuminate\Support\Facades\DB;
 
 
@@ -186,6 +187,9 @@ class LandingController extends Controller
                         case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SMP SWASTA':
                             $routeName = 'getsmpswasta';
                             break;
+                        case $item->namadata = 'ANGKA PARTISIPASI KASAR':
+                            $routeName = 'getapk';
+                            break;
                             // Add more cases for your other route conditions
                         default:
                             $routeName = 'home.index'; // A fallback route in case none of the conditions match
@@ -338,6 +342,30 @@ class LandingController extends Controller
         $data = $query->get();
 
         $labels = $data->pluck('kecamatan.nama_kecamatan');
+        $lakiData = $data->pluck('jk_lk');
+        $perempuanData = $data->pluck('jk_pr');
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'lanang' => $lakiData,
+                'perempuan' => $perempuanData
+            ]
+        ]);
+    }
+
+    public function getChartApk(Request $request)
+    {
+        $query = apk::query(); // Start with a base query and eager load 'kecamatan'
+
+        if ($request->filled('tahun')) {
+            // If 'tahun' parameter is provided, filter by it
+            $query->where('tahun', $request->tahun);
+        }
+
+        $data = $query->get();
+
+        $labels = $data->pluck('jenjang');
         $lakiData = $data->pluck('jk_lk');
         $perempuanData = $data->pluck('jk_pr');
 

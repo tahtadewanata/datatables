@@ -89,6 +89,8 @@ Route::get('/smpnegeri', [UsiasekolahController::class, 'getsmpnegeri'])->name('
 Route::get('/get-chart-smpnegeri', [LandingController::class, 'getChartSmpnegeri'])->name('getChartSmpnegeri');
 Route::get('/smpswasta', [UsiasekolahController::class, 'getsmpswasta'])->name('getsmpswasta');
 Route::get('/get-chart-smpswasta', [LandingController::class, 'getChartSmpswasta'])->name('getChartSmpswasta');
+Route::get('/partisipasi-sekolah', [UsiasekolahController::class, 'getapk'])->name('getpart-sekolah');
+Route::get('/get-chart-apk', [LandingController::class, 'getChartApk'])->name('getChartApk');
 
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
