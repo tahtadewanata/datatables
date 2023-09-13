@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `apm` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_datatable.apm: ~0 rows (approximately)
+-- Dumping data for table db_datatable.apm: ~2 rows (approximately)
 INSERT INTO `apm` (`id`, `jenjang`, `jk_lk`, `jk_pr`, `tahun`, `created_at`, `updated_at`) VALUES
 	(1, 'SD', 50, 48, 2021, '2023-09-13 13:05:44', NULL),
 	(2, 'SMP', 54, 41, 2021, '2023-09-13 13:05:53', NULL);
@@ -478,7 +478,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_datatable.migrations: ~22 rows (approximately)
+-- Dumping data for table db_datatable.migrations: ~25 rows (approximately)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_resets_table', 1),
@@ -617,7 +617,7 @@ CREATE TABLE IF NOT EXISTS `sertifikasiguru` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_datatable.sertifikasiguru: ~0 rows (approximately)
+-- Dumping data for table db_datatable.sertifikasiguru: ~3 rows (approximately)
 INSERT INTO `sertifikasiguru` (`id`, `jenjang`, `jk_lk`, `jk_pr`, `tahun`, `created_at`, `updated_at`) VALUES
 	(1, 'TK', 514, 557, 2021, '2023-09-13 14:06:43', NULL),
 	(2, 'SD', 1166, 1264, 2021, '2023-09-13 14:07:09', NULL),
