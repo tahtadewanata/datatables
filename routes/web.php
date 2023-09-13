@@ -91,6 +91,12 @@ Route::get('/smpswasta', [UsiasekolahController::class, 'getsmpswasta'])->name('
 Route::get('/get-chart-smpswasta', [LandingController::class, 'getChartSmpswasta'])->name('getChartSmpswasta');
 Route::get('/partisipasi-sekolah', [UsiasekolahController::class, 'getapk'])->name('getpart-sekolah');
 Route::get('/get-chart-apk', [LandingController::class, 'getChartApk'])->name('getChartApk');
+Route::get('/partisipasi-murni', [UsiasekolahController::class, 'getApm'])->name('getpart-murni');
+Route::get('/get-chart-apm', [LandingController::class, 'getChartApm'])->name('getChartApm');
+Route::get('/sertifikasi-guru', [UsiasekolahController::class, 'getSertifikasi'])->name('getSertifikasi');
+Route::get('/get-chart-sertifikasi', [LandingController::class, 'getChartSertifikasi'])->name('getChartSertifikasi');
+Route::get('/kejar-paket', [UsiasekolahController::class, 'getKejarpaket'])->name('getKejarpaket');
+Route::get('/get-chart-kejarpaket', [LandingController::class, 'getChartKejarpaket'])->name('getChartKejarpaket');
 
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
