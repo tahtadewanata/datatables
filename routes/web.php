@@ -7,6 +7,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\DatadasarController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KesehatanController;
 use App\Models\Sdswasta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -97,6 +98,11 @@ Route::get('/sertifikasi-guru', [UsiasekolahController::class, 'getSertifikasi']
 Route::get('/get-chart-sertifikasi', [LandingController::class, 'getChartSertifikasi'])->name('getChartSertifikasi');
 Route::get('/kejar-paket', [UsiasekolahController::class, 'getKejarpaket'])->name('getKejarpaket');
 Route::get('/get-chart-kejarpaket', [LandingController::class, 'getChartKejarpaket'])->name('getChartKejarpaket');
+
+//Data Bidang Kesehatan
+Route::get('/bidang-kesehatan', [LandingController::class, 'bidkesehatan'])->name('getKesehatantable');
+Route::get('/kelahiran-bayi', [KesehatanController::class, 'getKelahiranbayi'])->name('getKelahiranbayi');
+Route::get('/get-chart-sdswasta', [LandingController::class, 'getChartSdswasta'])->name('getchartsdswasta');
 
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');

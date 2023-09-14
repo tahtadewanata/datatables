@@ -13,6 +13,7 @@ use App\Models\Smpnegeri;
 use App\Models\Smpswasta;
 use App\Models\apk;
 use App\Models\apm;
+use App\Models\Kejarpaket;
 use App\Models\Sertifikasi;
 use Illuminate\Support\Facades\DB;
 
@@ -193,14 +194,14 @@ class LandingController extends Controller
                             $routeName = 'getpart-sekolah';
                             break;
                         case $item->namadata = 'ANGKA PARTISIPASI MURNI':
-                                $routeName = 'getpart-murni';
-                                break;
+                            $routeName = 'getpart-murni';
+                            break;
                         case $item->namadata = 'ANGKA KELULUSAN PAKET A, B DAN C':
-                                $routeName = 'getKejarpaket';
-                                break;
+                            $routeName = 'getKejarpaket';
+                            break;
                         case $item->namadata = 'SERTIFIKASI GURU':
-                                $routeName = 'getSertifikasi';
-                                break;
+                            $routeName = 'getSertifikasi';
+                            break;
                             // Add more cases for your other route conditions
                         default:
                             $routeName = 'home.index'; // A fallback route in case none of the conditions match
@@ -224,6 +225,7 @@ class LandingController extends Controller
 
         return view('landing.pages.bid_pendidikan', $judul);
     }
+
     public function getChartLanding(Request $request)
     {
         $data = Kecamatan::with('siswa')
@@ -413,6 +415,38 @@ class LandingController extends Controller
         ]);
     }
 
+    public function getChartKejarpaket(Request $request)
+    {
+        $query = Kejarpaket::query(); // Start with a base query and eager load 'kecamatan'
+
+        if ($request->filled('tahun')) {
+            // If 'tahun' parameter is provided, filter by it
+            $query->where('tahun', $request->tahun);
+        }
+
+        $data = $query->get();
+
+        $labels = $data->pluck('kecamatan.nama_kecamatan');
+        $paketA_lk = $data->pluck('paketA_lk');
+        $paketA_pr = $data->pluck('paketA_pr');
+        $paketB_lk = $data->pluck('paketB_lk');
+        $paketB_pr = $data->pluck('paketB_pr');
+        $paketC_lk = $data->pluck('paketC_lk');
+        $paketC_pr = $data->pluck('paketC_pr');
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => [
+                'a_lk' => $paketA_lk,
+                'a_pr' => $paketA_pr,
+                'b_lk' => $paketB_lk,
+                'b_pr' => $paketB_pr,
+                'c_lk' => $paketC_lk,
+                'c_pr' => $paketC_pr
+            ]
+        ]);
+    }
+
     public function getChartSertifikasi(Request $request)
     {
         $query = Sertifikasi::query(); // Start with a base query and eager load 'kecamatan'
@@ -436,11 +470,92 @@ class LandingController extends Controller
             ]
         ]);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function bidkesehatan(Request $request)
+    {
+        //
+        $judul = [
+            'title' => 'Bidang Kesehatan',
+        ];
+
+        $data = DataKlasifikasi::with(['bidang', 'klasifikasi'])
+            ->where('id_bidang', '=', 2)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        if ($request->ajax()) {
+            // Jika permintaan adalah permintaan AJAX
+            // Maka akan return DataTable
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('nama_tabel', function ($item) {
+                    // Mengembalikan nama kecamatan pada baris tabel.
+                    return $item->namadata;
+                })
+                // ->addColumn('bidang_nama', function ($item) {
+                //     // Mengembalikan nama bidang pada baris tabel.
+                //     return $item->bidang->namabidang;
+                // })
+                // ->addColumn('klasifikasi_nama', function ($item) {
+                //     // Mengembalikan nama klasifikasi pada baris tabel.
+                //     return $item->klasifikasi->namaklasifikasi;
+                // })
+                ->addColumn('actions', function ($item) {
+                    $condition = $item->namadata;
+
+                    // Define the route names based on your actual route names
+                    $routeName = '';
+
+                    // Set the appropriate route name based on the condition (use your own logic here)
+                    switch ($condition) {
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SD SWASTA':
+                            $routeName = 'getsdswasta';
+                            break;
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SD NEGERI':
+                            $routeName = 'getsdnegeri';
+                            break;
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SMP NEGERI':
+                            $routeName = 'getsmpnegeri';
+                            break;
+                        case $item->namadata = 'DATA PENDUDUK USIA SEKOLAH SMP SWASTA':
+                            $routeName = 'getsmpswasta';
+                            break;
+                        case $item->namadata = 'ANGKA PARTISIPASI KASAR':
+                            $routeName = 'getpart-sekolah';
+                            break;
+                        case $item->namadata = 'ANGKA PARTISIPASI MURNI':
+                            $routeName = 'getpart-murni';
+                            break;
+                        case $item->namadata = 'ANGKA KELULUSAN PAKET A, B DAN C':
+                            $routeName = 'getKejarpaket';
+                            break;
+                        case $item->namadata = 'SERTIFIKASI GURU':
+                            $routeName = 'getSertifikasi';
+                            break;
+                            // Add more cases for your other route conditions
+                        default:
+                            $routeName = 'home.index'; // A fallback route in case none of the conditions match
+                    }
+
+                    $route = route($routeName);
+
+                    return '<td><a href="' . $route . '" class="btn btn-secondary">Detail</a></td>';
+                })
+                // ->addColumn('actions', function ($item) {
+                //     // Tambahkan kolom aksi sesuai kebutuhan.
+                //     $actions = '<button class="btn btn-info">Edit</button>';
+                //     $actions .= '<button class="btn btn-danger">Delete</button>';
+                //     // Tambahkan tombol-tombol aksi lainnya di sini.
+
+                //     return $actions;
+                // })
+                ->rawColumns(['actions']) // Jika kolom 'action' memuat HTML.
+                ->make(true);
+        }
+
+        return view('landing.pages.bid_kesehatan', $judul);
+    }
+
     public function create()
     {
         //

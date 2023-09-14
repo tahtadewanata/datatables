@@ -22,7 +22,6 @@
                     <label for="exampleFormControlSelect1"><strong>Tahun</strong></label>
                     <select class="form-control" id="exampleFormControlSelect1" name="tahun">
                         <option value="">Pilih Tahun</option>
-                        <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
@@ -37,34 +36,20 @@
                                 <tr>
                                     <th rowspan="2">No</th>
                                     <th rowspan="2">Kecamatan</th>
-                                    <th colspan="2">Paket A</th>
-                                    <th colspan="2">Paket B</th>
-                                    <th colspan="2">Paket C</th>
+                                    <th colspan="2">Jenis Kelamin</th>
+                                    <th rowspan="2">Jumlah</th>
+                                    <th colspan="2">Persentase</th>
                                     <th rowspan="2" width="15%">Actions</th>
                                 </tr>
                                 <tr>
-                                    <th>L</th>
-                                    <th>P</th>
-                                    <th>L</th>
-                                    <th>P</th>
-                                    <th>L</th>
-                                    <th>P</th>
+                                    <th>Lk</th>
+                                    <th>Pr</th>
+                                    <th>Lk</th>
+                                    <th>Pr</th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot align="right">
-        <tr>
-            <th colspan="2"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </tfoot>
                         </table>
                     </div>
                 </div>
@@ -85,80 +70,10 @@
         $(function() {
             let tahun = $('#exampleFormControlSelect1').val();
             var myTable = $('#exampleData').DataTable({
-                "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
- 
-            // converting to interger to find total
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // computing column Total of the complete result 
-            var monTotal = api
-                .column( 2 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-				
-	    var tueTotal = api
-                .column( 3 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-				
-            var wedTotal = api
-                .column( 4 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-				
-	     var thuTotal = api
-                .column( 5 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-				
-            var kemisTotal = api
-                .column( 6 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-            var friTotal = api
-                .column( 7 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-            var satTotal = api
-                .column( 8 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-            
-
-        // Update footer by showing the total with the reference of the column index
-        $(api.column(0).footer()).html('Total: ').addClass('text-center');
-        $(api.column(2).footer()).html(monTotal); // Clear column 1 footer
-        $(api.column(3).footer()).html(tueTotal);
-        $(api.column(4).footer()).html(wedTotal);
-        $(api.column(5).footer()).html(thuTotal);
-        $(api.column(6).footer()).html(thuTotal);
-        $(api.column(7).footer()).html(friTotal);
-        $(api.column(8).footer()).html(satTotal);
-        },
-        processing: true,
+                processing: true,
                 serverSide: true,               
                 ajax: {
-                url: '{{ route('getKejarpaket') }}',
+                url: '{{ route('getKelahiranbayi') }}',
                 
                 type: "GET",
                 dataType: "JSON",
@@ -178,27 +93,23 @@
                     },
                     {
                         data: 'jk_lk',
-                        name: 'jk_lk' 
+                        name: 'jk_lk' //dari sini bukan ? mungkin 
                     },
                     {
                         data: 'jk_pr',
                         name: 'jk_pr'
                     },
                     {
-                        data: 'B_lk',
-                        name: 'B_lk'
+                        data: 'sum',
+                        name: 'sum'
                     },
                     {
-                        data: 'B_pr',
-                        name: 'B_pr'
+                        data: 'pr_l',
+                        name: 'pr_l'
                     },
                     {
-                        data: 'C_lk',
-                        name: 'C_lk'
-                    },
-                    {
-                        data: 'C_pr',
-                        name: 'C_pr'
+                        data: 'pr_p',
+                        name: 'pr_p'
                     },
                     {
                         data: 'actions',
@@ -221,7 +132,7 @@
                 let tahun = $(this).val();
 
                 // Membentuk URL dengan menambahkan parameter tahun
-                let urls = '{!! route('getKejarpaket') !!}' + '?tahun=' + tahun;
+                let urls = '{!! route('getKelahiranbayi') !!}' + '?tahun=' + tahun;
 
                 // Memperbarui URL sumber data DataTable dan memuat ulang data
                 myTable.ajax.url(urls).load();
@@ -248,7 +159,7 @@
                 let selectedYear = $('#exampleFormControlSelect1').val();
 
                 $.ajax({
-                    url: "{{ route('getChartKejarpaket') }}",
+                    url: "{{ route('getChartSmpnegeri') }}",
                     type: "GET",
                     data: {
                         tahun: selectedYear
@@ -266,55 +177,19 @@
                             data: {
                                 labels: response.labels,
                                 datasets: [{
-                                    label: 'Paket A Lk',
-                                    data: response.data.a_lk,
+                                    label: 'Laki-laki',
+                                    data: response.data.lanang,
                                     borderWidth: 2,
                                     backgroundColor: '#6777ef',
                                     borderColor: '#6777ef',
                                     pointBackgroundColor: '#ffffff',
                                     pointRadius: 4
                                 }, {
-                                    label: 'Paket A Pr',
-                                    data: response.data.a_pr,
+                                    label: 'Perempuan',
+                                    data: response.data.perempuan,
                                     borderWidth: 2,
                                     backgroundColor: '#ff6b88',
                                     borderColor: '#ff6b88',
-                                    pointBackgroundColor: '#ffffff',
-                                    pointRadius: 4
-                                },
-                                    {
-                                    label: 'Paket B Lk',
-                                    data: response.data.b_lk,
-                                    borderWidth: 2,
-                                    backgroundColor: '#275D2B',
-                                    borderColor: '#275D2B', 
-                                    pointBackgroundColor: '#ffffff',
-                                    pointRadius: 4
-                                },
-                                {
-                                    label: 'Paket B Pr',
-                                    data: response.data.b_pr,
-                                    borderWidth: 2,
-                                    backgroundColor: '#2784FF',
-                                    borderColor: '#2784FF', 
-                                    pointBackgroundColor: '#ffffff',
-                                    pointRadius: 4
-                                },
-                                    {
-                                    label: 'Paket C Lk',
-                                    data: response.data.c_lk,
-                                    borderWidth: 2,
-                                    backgroundColor: '#E02225',
-                                    borderColor: '#E02225', 
-                                    pointBackgroundColor: '#ffffff',
-                                    pointRadius: 4
-                                },
-                                {
-                                    label: 'Paket C Pr',
-                                    data: response.data.c_pr,
-                                    borderWidth: 2,
-                                    backgroundColor: '#E7A356',
-                                    borderColor: '#E7A356', 
                                     pointBackgroundColor: '#ffffff',
                                     pointRadius: 4
                                 }]
@@ -324,7 +199,7 @@
                                     yAxes: [{
                                         ticks: {
                                             beginAtZero: false,
-                                            stepSize: 20
+                                            stepSize: 200
                                         }
                                     }],
                                     xAxes: [{
@@ -349,7 +224,7 @@
             }
 
         function downloadImage() {
-            myChart.options.title.text = 'New Chart Title';
+            myChart.options.title.text = 'Judul Chart';
             myChart.update({
                 duration: 0
             });
