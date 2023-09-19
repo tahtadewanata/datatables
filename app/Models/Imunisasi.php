@@ -11,4 +11,9 @@ class Imunisasi extends Model
 
     protected $table = 'imunisasi';
     protected $guarded = ['id'];
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
 }
