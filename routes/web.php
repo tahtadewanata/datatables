@@ -127,4 +127,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     //User
     Route::resource('/pengguna', UserController::class);
+
+
+    //  app\Http\Controllers\DataDisdikController.php
+    Route::get('/datadisdik', 'DataDisdikController@index')->name('datadisdik.index');
+    Route::post('/datadisdik/import', 'DataDisdikController@import')->name('datadisdik.import');
 });
