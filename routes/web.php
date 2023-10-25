@@ -104,6 +104,10 @@ Route::get('/bidang-kesehatan', [LandingController::class, 'bidkesehatan'])->nam
 Route::get('/kelahiran-bayi', [KesehatanController::class, 'getKelahiranbayi'])->name('getKelahiranbayi');
 Route::get('/get-chart-sdswasta', [LandingController::class, 'getChartSdswasta'])->name('getchartsdswasta');
 
+//Data Imunisasi
+Route::get('/imunisasi', [KesehatanController::class, 'getImunisasi'])->name('getImunisasi');
+Route::get('/get-chart-imunisasi', [KesehatanController::class, 'getChartImunisasi'])->name('getChartImunisasi');
+
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
 
