@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Sdswasta;
+
 
 class DatatableController extends Controller
 {
@@ -33,7 +35,7 @@ class DatatableController extends Controller
                     return $item->nama_kecamatan;
                 })
                 ->addColumn('jk_l', function ($item) {
-                    return $sds = Sdswasta::sum('jk_lk') 
+                    return $sds = Sdswasta::sum('jk_lk'); 
                     //  $item->countjk('L');
                     // ini apa? ini buat di halaman adminnya mas
                 })
@@ -46,11 +48,22 @@ class DatatableController extends Controller
                     return $sum;
                 })
                 ->addColumn('pr_l', function ($item) {
-                    return number_format(($item->countjk('L') / $item->sum) * 100, 2);
+                    if ($item->sum != 0) {
+                        $result = number_format(($item->countjk('L') / $item->sum) * 100, 2);
+                    } else {
+                        $result = "0";
+                    }
+                    
+                    return $result;
                 })
                 ->addColumn('pr_p', function ($item) {
-                    return number_format(($item->countjk('P') / $item->sum) * 100, 2);
-                })
+                    if ($item->sum != 0) {
+                        $result = number_format(($item->countjk('P') / $item->sum) * 100, 2);
+                    } else {
+                        $result = "0";
+                    }
+                    
+                    return $result;                })
                 ->addColumn('actions', function () {
                     return '<td><a href="#" class="btn btn-secondary">Detail</a></td>';
                 })

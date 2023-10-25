@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../../admin/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="../../admin/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="../../admin/modules/izitoast/css/iziToast.min.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="../../admin/css/style.css">
@@ -66,7 +67,7 @@
     </div>
 
     <!-- General JS Scripts -->
-    {{-- <script src="../../admin/modules/jquery.min.js"></script> --}}
+    <script src="../../admin/modules/jquery.min.js"></script>
     <script src="../../admin/modules/popper.js"></script>
     <script src="../../admin/modules/tooltip.js"></script>
     <script src="../../admin/modules/bootstrap/js/bootstrap.min.js"></script>
@@ -74,6 +75,8 @@
     <script src="../../admin/modules/moment.min.js"></script>
     <script src="../../admin/js/stisla.js"></script>
     <script src="../../admin/js/page/bootstrap-modal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 
     <!-- Template JS File -->
