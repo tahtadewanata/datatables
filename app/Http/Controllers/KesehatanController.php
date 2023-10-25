@@ -13,8 +13,8 @@ class KesehatanController extends Controller
     {
         //
         $judul = [
-            'title' => 'Data Penduduk Usia Sekolah',
-            'desc' => 'Penduduk Usia Sekolah Dasar Negeri (7 - 12 tahun) Berdasarkan Jenis Kelamin dan Kecamatan Kabupaten Nganjuk Tahun 2021'
+            'title' => 'Data Kelahiran Bayi',
+            'desc' => 'Kelahiran menurut jenis kelamin dan Kecamatan di Kabupaten Nganjuk'
         ];
 
         $data = Kelahiran::when($request->has('tahun'), function ($kec) use ($request) {
