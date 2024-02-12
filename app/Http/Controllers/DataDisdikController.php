@@ -28,13 +28,14 @@ class DataDisdikController extends Controller
             $sheetSdNegeri = 'sd_negeri'; // Change to the desired sheet name
             // Get the worksheet by name
             $worksheetSdNegeri = $reader->getSheetByName($sheetSdNegeri);
-            
+
             $no = 0;
             if ($worksheetSdNegeri) {
                 $dataSdNegeri = $worksheetSdNegeri->toArray();
+                $headersSdNegeri = $dataSdNegeri[3]; // Assuming headers are in the 4th row
                 // nama_kecamatan
                 foreach ($dataSdNegeri as $key => $value) {
-                    if ($key > 0) {
+                    if ($key > 3) {
                         // keacamta row
                         $kecamatanRow = Kecamatan::where('nama_kecamatan', $value[0])->first();
                         // cek sudah ada data dengan kecamatan dan tahun pada table sdnegeri
@@ -62,38 +63,39 @@ class DataDisdikController extends Controller
                         $no++;
                     }
                 }
-            }
+            } else {
 
-            // untk SD Swasta
-            $sheetSdSwasta = 'sd_swasta'; // Change to the desired sheet name
-            // Get the worksheet by name
-            $worksheetSdSwasta = $reader->getSheetByName($sheetSdSwasta);
-            if ($worksheetSdSwasta) {
-                $dataSqSwasta = $worksheetSdSwasta->toArray();
-                // nama_kecamatan
-                foreach ($dataSqSwasta as $keyy => $val) {
-                    if ($keyy > 0) {
-                        // keacamta row
-                        $kecamatanRow = Kecamatan::where('nama_kecamatan', $val[0])->first();
-                        // cek sudah ada data dengan kecamatan dan tahun pada table Sdswasta
-                        $sdSwastaRow = Sdswasta::where('kecamatan_id', $kecamatanRow->id)->where('tahun', $val[3])->first();
-                        if ($sdSwastaRow) {
-                            // update  Sdswasta
-                            $sdSwastaRow->kecamatan_id = $kecamatanRow->id;
-                            $sdSwastaRow->jk_lk = $val[1]; 
-                            $sdSwastaRow->jk_pr = $val[2];
-                            $sdSwastaRow->tahun = $val[3];
-                            $sdSwastaRow->save();
-                        } else {
-                            // init Sdswasta
-                            $insertSdSwasta = new Sdswasta();
-                            $insertSdSwasta->kecamatan_id = $kecamatanRow->id;
-                            $insertSdSwasta->jk_lk = $val[1];
-                            $insertSdSwasta->jk_pr = $val[2];
-                            $insertSdSwasta->tahun = $val[3];
-                            $insertSdSwasta->save();
+                // untk SD Swasta
+                $sheetSdSwasta = 'sd_swasta'; // Change to the desired sheet name
+                // Get the worksheet by name
+                $worksheetSdSwasta = $reader->getSheetByName($sheetSdSwasta);
+                if ($worksheetSdSwasta) {
+                    $dataSqSwasta = $worksheetSdSwasta->toArray();
+                    // nama_kecamatan
+                    foreach ($dataSqSwasta as $keyy => $val) {
+                        if ($keyy > 0) {
+                            // keacamta row
+                            $kecamatanRow = Kecamatan::where('nama_kecamatan', $val[0])->first();
+                            // cek sudah ada data dengan kecamatan dan tahun pada table Sdswasta
+                            $sdSwastaRow = Sdswasta::where('kecamatan_id', $kecamatanRow->id)->where('tahun', $val[3])->first();
+                            if ($sdSwastaRow) {
+                                // update  Sdswasta
+                                $sdSwastaRow->kecamatan_id = $kecamatanRow->id;
+                                $sdSwastaRow->jk_lk = $val[1];
+                                $sdSwastaRow->jk_pr = $val[2];
+                                $sdSwastaRow->tahun = $val[3];
+                                $sdSwastaRow->save();
+                            } else {
+                                // init Sdswasta
+                                $insertSdSwasta = new Sdswasta();
+                                $insertSdSwasta->kecamatan_id = $kecamatanRow->id;
+                                $insertSdSwasta->jk_lk = $val[1];
+                                $insertSdSwasta->jk_pr = $val[2];
+                                $insertSdSwasta->tahun = $val[3];
+                                $insertSdSwasta->save();
+                            }
+                            $no++;
                         }
-                        $no++;
                     }
                 }
             }
