@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kecamatan;
+use App\Models\Sdswasta;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Response;
@@ -33,7 +34,7 @@ class DatatableController extends Controller
                     return $item->nama_kecamatan;
                 })
                 ->addColumn('jk_l', function ($item) {
-                    return $sds = Sdswasta::sum('jk_lk') 
+                    return $sds = Sdswasta::sum('jk_lk');
                     //  $item->countjk('L');
                     // ini apa? ini buat di halaman adminnya mas
                 })
