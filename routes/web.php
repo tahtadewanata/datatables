@@ -15,16 +15,6 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\TotalusiasekolahController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 // |--------------------------------------------------------------------------
 // | OLD ROUTES
@@ -38,10 +28,10 @@ use Illuminate\Support\Facades\Route;
 
 //     Route::get('/detailgender/{id}', 'HomeController@show')->name('datagender.show');
 //     /**
-//      * Register Routes
-//      */
-//     Route::get('/register', 'RegisterController@show')->name('register.show');
-//     Route::post('/register', 'RegisterController@register')->name('register.perform');
+//  * Register Routes
+//  */
+Route::get('/register', 'RegisterController@show')->name('register.show');
+Route::post('/register', 'RegisterController@register')->name('register.perform');
 
 //     /**
 //      * Login Routes

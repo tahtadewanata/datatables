@@ -163,7 +163,7 @@
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="remember" class="custom-control-input"
                                                 tabindex="3" id="remember-me">
-                                            <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                            <label class="custom-control-label" for="remember-me">Ingatkan Saya</label>
                                         </div>
                                     </div>
 
@@ -174,29 +174,11 @@
                                         </button>
                                     </div>
                                 </form>
-                                <div class="text-center mt-4 mb-3">
-                                    <div class="text-job text-muted">Login With Social</div>
-                                </div>
-                                <div class="row sm-gutters">
-                                    <div class="col-6">
-                                        <a class="btn btn-block btn-social btn-facebook">
-                                            <span class="fab fa-facebook"></span> Facebook
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="btn btn-block btn-social btn-twitter">
-                                            <span class="fab fa-twitter"></span> Twitter
-                                        </a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
-                        <div class="mt-5 text-muted text-center">
-                            Don't have an account? <a href="auth-register.html">Create One</a>
-                        </div>
+                        
                         <div class="simple-footer">
-                            Copyright &copy; Stisla 2018
+                            Copyright &copy; Diskominfo Nganjuk <span id="copyright-year"></span>
                         </div>
                     </div>
                 </div>
@@ -212,7 +194,9 @@
     <script src="../../admin/modules/nicescroll/jquery.nicescroll.min.js"></script>
     <script src="../../admin/modules/moment.min.js"></script>
     <script src="../../admin/js/stisla.js"></script>
-
+<script>
+document.getElementById("copyright-year").innerHTML = new Date().getFullYear();
+</script>
     <!-- JS Libraies -->
 
     <!-- Page Specific JS File -->

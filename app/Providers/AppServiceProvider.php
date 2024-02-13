@@ -6,6 +6,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // \URL::forceScheme('https');
+        // Paginator::useBootstrap(); aktifkan ketika force https
+
         DB::listen(function ($query) {
             if (env('APP_ENV') != 'production') {
                 // set logging
