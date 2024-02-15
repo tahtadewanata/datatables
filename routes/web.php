@@ -30,8 +30,8 @@ use Illuminate\Support\Facades\Route;
 //     /**
 //  * Register Routes
 //  */
-Route::get('/register', 'RegisterController@show')->name('register.show');
-Route::post('/register', 'RegisterController@register')->name('register.perform');
+// Route::get('/register', 'RegisterController@show')->name('register.show');
+// Route::post('/register', 'RegisterController@register')->name('register.perform');
 
 //     /**
 //      * Login Routes
@@ -58,7 +58,8 @@ Route::post('/register', 'RegisterController@register')->name('register.perform'
 // Route::get('totalusiasekolah', [TotalusiasekolahController::class, 'index'])->name('totalusiasekolah.index');
 // Route::get('totalusiasekolah/list', [TotalusiasekolahController::class, 'getTotalusiasekolah'])->name('totalusiasekolah.list');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
 
 Route::get('/test-sum', function () {
     $sds = Sdswasta::sum('jk_lk');
@@ -101,7 +102,7 @@ Route::get('/get-chart-imunisasi', [KesehatanController::class, 'getChartImunisa
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Dashboard
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
@@ -121,7 +122,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     //User
     Route::resource('/pengguna', UserController::class);
-
 
     //  app\Http\Controllers\DataDisdikController.php
     Route::get('/datadisdik', 'DataDisdikController@index')->name('datadisdik.index');
