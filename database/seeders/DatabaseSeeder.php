@@ -7,6 +7,11 @@ use Database\Seeders\BidangSeeder;
 use Database\Seeders\DataklasifikasiSeeder;
 use Database\Seeders\KlasifikasiSeeder;
 use Database\Seeders\KecamatanSeeder;
+use Database\Seeders\ModelHasPermissionsTableSeeder;
+use Database\Seeders\ModelHasRolesTableSeeder;
+use Database\Seeders\PermissionsTableSeeder;
+use Database\Seeders\RolePermissionTableSeeder;
+use Database\Seeders\RolesTableSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
@@ -42,7 +47,12 @@ class DatabaseSeeder extends Seeder
             BidangSeeder::class,
             DataklasifikasiSeeder::class,
             KecamatanSeeder::class,
-            KlasifikasiSeeder::class
+            KlasifikasiSeeder::class,
+            RolesTableSeeder::class,
+            PermissionsTableSeeder::class,
+            RolePermissionTableSeeder::class,
+            ModelHasRolesTableSeeder::class,
+            ModelHasPermissionsTableSeeder::class
         ]);
     }
 }

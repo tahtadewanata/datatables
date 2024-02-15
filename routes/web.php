@@ -102,28 +102,31 @@ Route::get('/get-chart-imunisasi', [KesehatanController::class, 'getChartImunisa
 //DATA DASAR
 Route::get('/data-dasar', [DatadasarController::class, 'getDatadasar'])->name('getdasar');
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(
+    ['middleware' => ['role:superadmin', 'auth', 'verified']],
+    function () {
 
-    //Dashboard
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+        //Dashboard
+        Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
-    //Datatable
-    Route::resource('/datatable', DatatableController::class);
+        //Datatable
+        Route::resource('/datatable', DatatableController::class);
 
-    //Export Datatable
-    Route::post('/getExport', [DatatableController::class, 'getExport'])->name('getExport');
+        //Export Datatable
+        Route::post('/getExport', [DatatableController::class, 'getExport'])->name('getExport');
 
-    //ChartJS
-    Route::resource('/chartjs', ChartController::class);
-    Route::get('/getChart', [ChartController::class, 'getChart'])->name('getChart');
+        //ChartJS
+        Route::resource('/chartjs', ChartController::class);
+        Route::get('/getChart', [ChartController::class, 'getChart'])->name('getChart');
 
-    //Crud Kecamatan
-    Route::resource('/kecamatan', KecamatanController::class);
+        //Crud Kecamatan
+        Route::resource('/kecamatan', KecamatanController::class);
 
-    //User
-    Route::resource('/pengguna', UserController::class);
+        //User
+        Route::resource('/pengguna', UserController::class);
 
-    //  app\Http\Controllers\DataDisdikController.php
-    Route::get('/datadisdik', 'DataDisdikController@index')->name('datadisdik.index');
-    Route::post('/datadisdik/import', 'DataDisdikController@import')->name('datadisdik.import');
-});
+        //  app\Http\Controllers\DataDisdikController.php
+        Route::get('/datadisdik', 'DataDisdikController@index')->name('datadisdik.index');
+        Route::post('/datadisdik/import', 'DataDisdikController@import')->name('datadisdik.import');
+    }
+);
